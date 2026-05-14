@@ -1,0 +1,24 @@
+@startuml
+left to right direction
+actor "顾客" as Customer
+actor "注册会员" as Member
+Customer <|-- Member
+rectangle "会员与偏好子系统" {
+  usecase "注册/登录" as U1
+  usecase "维护个人资料" as U2
+  usecase "维护猫咪/菜品偏好" as U3
+  usecase "管理隐私授权" as U4
+  usecase "查看积分与优惠券" as U5
+  usecase "领取活动券" as U6
+  usecase "评价门店体验" as U7
+}
+Customer --> U1
+Member --> U2
+Member --> U3
+Member --> U4
+Member --> U5
+Member --> U6
+Member --> U7
+U3 ..> U4 : <<include>>
+U6 ..> U5 : <<extend>>
+@enduml

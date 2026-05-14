@@ -1,0 +1,47 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+actor "顾客" as Customer
+actor "注册会员" as Member
+actor "店员" as Staff
+actor "猫咪管家" as Keeper
+actor "店长" as Manager
+actor "总部运营" as Ops
+actor "外部支付" as Pay
+actor "通知服务" as Notify
+Customer <|-- Member
+rectangle "NekoCafé 智慧餐饮预约平台" {
+  usecase "浏览门店" as UC01
+  usecase "管理会员资料" as UC02
+  usecase "创建桌位预约" as UC03
+  usecase "AI 推荐桌位/猫咪/菜品" as UC04
+  usecase "管理预约\n改期/取消/候补" as UC05
+  usecase "点单与支付" as UC06
+  usecase "到店核销" as UC07
+  usecase "桌位调度" as UC08
+  usecase "处理订单" as UC09
+  usecase "猫咪健康打卡" as UC10
+  usecase "运营看板" as UC11
+  usecase "活动投放" as UC12
+  usecase "发送通知" as UC13
+}
+Customer --> UC01
+Member --> UC02
+Member --> UC03
+Member --> UC05
+Member --> UC06
+Staff --> UC07
+Staff --> UC08
+Staff --> UC09
+Keeper --> UC10
+Manager --> UC11
+Ops --> UC11
+Ops --> UC12
+Pay --> UC06
+Notify --> UC13
+UC03 ..> UC04 : <<include>>
+UC03 ..> UC13 : <<include>>
+UC05 ..> UC13 : <<include>>
+UC06 ..> UC13 : <<include>>
+UC10 ..> UC04 : <<extend>>
+@enduml

@@ -1,0 +1,34 @@
+@startuml
+skinparam classAttributeIconSize 0
+class Customer { +customerId; +name; +phone; +privacyConsent }
+class Member { +level; +points; +birthday; +preferenceTags }
+class Store { +storeId; +city; +address; +businessHours }
+class TableSlot { +tableId; +capacity; +areaType; +status }
+class Reservation { +reservationId; +timeSlot; +partySize; +status; +specialRequest }
+class Order { +orderId; +status; +totalAmount }
+class OrderItem { +quantity; +price }
+class MenuItem { +itemId; +name; +allergenTags; +price }
+class Payment { +paymentId; +channel; +amount; +status }
+class Coupon { +couponId; +rule; +validUntil }
+class CatProfile { +catId; +name; +temperament; +availableStatus }
+class HealthCheckIn { +checkInId; +appetite; +energy; +temperature; +remark }
+class Staff { +staffId; +role; +storeId }
+class Promotion { +promotionId; +targetSegment; +budget; +status }
+class AuditLog { +actorId; +action; +createdAt; +traceId }
+Customer <|-- Member
+Store "1" o-- "many" TableSlot
+Store "1" o-- "many" Staff
+Store "1" o-- "many" CatProfile
+Member "1" -- "many" Reservation
+Reservation "1" --> "1" TableSlot
+Reservation "0..1" --> "1" CatProfile
+Reservation "0..1" --> "1" Order
+Order "1" o-- "many" OrderItem
+OrderItem "many" --> "1" MenuItem
+Order "0..1" --> Payment
+Member "many" -- "many" Coupon
+CatProfile "1" o-- "many" HealthCheckIn
+Promotion "1" --> "many" Coupon
+AuditLog ..> Reservation
+AuditLog ..> Order
+@enduml

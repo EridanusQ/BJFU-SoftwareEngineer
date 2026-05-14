@@ -1,0 +1,20 @@
+@startuml
+actor "会员" as Member
+participant "顾客端" as App
+participant "预约服务" as Reservation
+participant "菜单/订单服务" as Order
+participant "优惠服务" as Coupon
+participant "支付网关" as Pay
+participant "通知服务" as Notify
+Member -> App: 选择预约并提交菜品
+App -> Reservation: 校验预约状态
+Reservation --> App: 已确认/可点单
+App -> Order: 创建订单
+Order -> Coupon: 校验优惠券
+Coupon --> Order: 返回优惠金额
+Order -> Pay: 发起支付
+Pay --> Order: 支付成功
+Order -> Reservation: 绑定订单
+Order -> Notify: 发送下单成功通知
+Notify --> Member: 小程序/短信提醒
+@enduml

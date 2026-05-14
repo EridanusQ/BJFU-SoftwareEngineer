@@ -1,0 +1,20 @@
+@startuml
+actor "会员" as Member
+participant "API 网关" as Gateway
+participant "会员服务" as MemberSvc
+participant "推荐服务" as RecSvc
+participant "预约服务" as ReservationSvc
+participant "猫咪档案服务" as CatSvc
+participant "通知服务" as Notify
+Member -> Gateway: 提交桌位预约
+Gateway -> MemberSvc: 校验登录与偏好授权
+MemberSvc --> Gateway: 会员画像摘要
+Gateway -> CatSvc: 查询猫咪可互动状态
+CatSvc --> Gateway: 可互动猫咪列表
+Gateway -> RecSvc: 请求桌位/猫咪推荐
+RecSvc --> Gateway: 推荐方案与理由
+Gateway -> ReservationSvc: 创建预约
+ReservationSvc --> Gateway: 预约号与状态
+Gateway -> Notify: 发送确认通知
+Gateway --> Member: 返回预约成功
+@enduml

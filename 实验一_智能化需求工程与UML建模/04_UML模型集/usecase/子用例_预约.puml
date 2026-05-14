@@ -1,0 +1,26 @@
+@startuml
+left to right direction
+actor "注册会员" as Member
+actor "店员" as Staff
+rectangle "预约子系统" {
+  usecase "选择城市/门店" as U1
+  usecase "查看桌位与猫咪状态" as U2
+  usecase "填写人数与特殊需求" as U3
+  usecase "提交预约" as U4
+  usecase "候补登记" as U5
+  usecase "改期/取消" as U6
+  usecase "到店核销" as U7
+  usecase "发送预约通知" as U8
+}
+Member --> U1
+Member --> U2
+Member --> U3
+Member --> U4
+Member --> U5
+Member --> U6
+Staff --> U7
+U4 ..> U2 : <<include>>
+U4 ..> U8 : <<include>>
+U5 ..> U8 : <<include>>
+U6 ..> U8 : <<include>>
+@enduml
