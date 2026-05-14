@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nekocafe-runtime
+data:
+  LOG_FORMAT: json
+  TRACE_HEADER: X-Trace-Id

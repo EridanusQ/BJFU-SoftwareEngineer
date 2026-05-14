@@ -1,0 +1,16 @@
+{{- range $name, $svc := .Values.services }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: nekocafe-{{ $name }}
+  labels:
+    app.kubernetes.io/name: nekocafe-{{ $name }}
+spec:
+  selector:
+    app.kubernetes.io/name: nekocafe-{{ $name }}
+  ports:
+    - name: http
+      port: 80
+      targetPort: http
+---
+{{- end }}
