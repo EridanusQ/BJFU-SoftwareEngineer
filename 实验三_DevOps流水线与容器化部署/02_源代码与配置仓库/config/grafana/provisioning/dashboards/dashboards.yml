@@ -1,0 +1,9 @@
+apiVersion: 1
+providers:
+  - name: nekocafe
+    orgId: 1
+    folder: NekoCafe
+    type: file
+    disableDeletion: false
+    options:
+      path: /var/lib/grafana/dashboards

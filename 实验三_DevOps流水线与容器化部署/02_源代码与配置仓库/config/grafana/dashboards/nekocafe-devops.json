@@ -1,0 +1,11 @@
+{
+  "title": "NekoCafé DevOps Overview",
+  "schemaVersion": 39,
+  "version": 1,
+  "panels": [
+    {"type": "timeseries", "title": "QPS", "gridPos": {"x": 0, "y": 0, "w": 12, "h": 8}},
+    {"type": "timeseries", "title": "P99 Latency", "gridPos": {"x": 12, "y": 0, "w": 12, "h": 8}},
+    {"type": "timeseries", "title": "Error Rate", "gridPos": {"x": 0, "y": 8, "w": 12, "h": 8}},
+    {"type": "timeseries", "title": "CPU / Memory", "gridPos": {"x": 12, "y": 8, "w": 12, "h": 8}}
+  ]
+}

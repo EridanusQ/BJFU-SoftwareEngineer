@@ -1,0 +1,55 @@
+name: cd
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        type: choice
+        required: true
+        default: staging
+        options: [dev, staging, prod]
+      image_tag:
+        required: true
+        default: latest
+
+permissions:
+  contents: read
+
+concurrency:
+  group: cd-${{ inputs.environment }}
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: azure/setup-helm@v4
+      - name: Configure kubeconfig
+        run: |
+          mkdir -p ~/.kube
+          echo "${{ secrets.KUBECONFIG_B64 }}" | base64 -d > ~/.kube/config
+      - name: Helm lint
+        working-directory: 实验三_DevOps流水线与容器化部署/05_K8s部署清单与Helm_Chart
+        run: helm lint helm -f helm/values-${{ inputs.environment }}.yaml
+      - name: Deploy canary
+        working-directory: 实验三_DevOps流水线与容器化部署/05_K8s部署清单与Helm_Chart
+        run: |
+          helm upgrade --install nekocafe helm                 -n nekocafe-${{ inputs.environment }} --create-namespace                 -f helm/values-${{ inputs.environment }}.yaml                 --set image.tag=${{ inputs.image_tag }}                 --set rollout.canaryWeight=10
+          kubectl rollout status deploy/nekocafe-reservation -n nekocafe-${{ inputs.environment }} --timeout=120s
+          kubectl rollout status deploy/nekocafe-member -n nekocafe-${{ inputs.environment }} --timeout=120s
+      - name: Check SLO and promote
+        env:
+          PROM_URL: ${{ secrets.PROM_URL }}
+        run: |
+          echo "Query Prometheus for P95 latency <= 350ms and error rate <= 1%"
+          echo "PoC keeps the query here; production would curl $PROM_URL/api/v1/query"
+      - name: Promote to 100 percent
+        working-directory: 实验三_DevOps流水线与容器化部署/05_K8s部署清单与Helm_Chart
+        run: |
+          helm upgrade --install nekocafe helm                 -n nekocafe-${{ inputs.environment }}                 -f helm/values-${{ inputs.environment }}.yaml                 --set image.tag=${{ inputs.image_tag }}                 --set rollout.canaryWeight=100
+      - name: Rollback on failure
+        if: failure()
+        run: helm rollback nekocafe -n nekocafe-${{ inputs.environment }} || true
