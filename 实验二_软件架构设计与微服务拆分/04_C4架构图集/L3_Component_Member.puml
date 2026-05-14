@@ -1,0 +1,36 @@
+@startuml L3_Component_Member
+title NekoCafé C4 L3 - Member Service Components
+left to right direction
+skinparam componentStyle rectangle
+actor "顾客端/BFF" as Client
+component "Member API Controller" as Controller
+component "Identity Adapter\nOIDC/小程序登录" as Identity
+component "Member Profile Service\n资料/等级/积分" as Profile
+component "Preference Service\n猫咪/菜品偏好" as Preference
+component "Privacy Consent Service\n授权/撤回/删除请求" as Consent
+component "Coupon Wallet\n优惠券/积分账户" as Wallet
+component "Policy Engine\nRBAC+ABAC" as Policy
+component "Outbox Publisher\nmember-events" as Outbox
+database "member_db" as DB
+queue "member-events" as Events
+Client --> Controller
+Controller --> Identity : 登录换 token
+Controller --> Profile
+Controller --> Preference
+Controller --> Consent
+Controller --> Wallet
+Profile --> Policy
+Preference --> Policy
+Consent --> Policy
+Profile --> DB
+Preference --> DB
+Consent --> DB
+Wallet --> DB
+Consent --> Outbox : ConsentChanged
+Profile --> Outbox : MemberUpdated
+Outbox --> Events
+note bottom of Consent
+营销退订 1 分钟内生效；
+删除请求 15 个工作日内闭环。
+end note
+@enduml

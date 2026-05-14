@@ -1,0 +1,57 @@
+@startuml L4_Code_ReservationCore
+title NekoCafé C4 L4 - Reservation Core Code View
+skinparam classAttributeIconSize 0
+class ReservationApplicationService {
+  +createReservation(cmd)
+  +rescheduleReservation(cmd)
+  +cancelReservation(cmd)
+}
+class ReservationPolicy {
+  +validateBusinessHours(store, slot)
+  +validatePartySize(tableSlot, partySize)
+  +canCancel(reservation, now)
+}
+class CapacityLockManager {
+  +tryLock(tableId, timeSlot, ttl)
+  +release(lockId)
+}
+class Reservation {
+  +id
+  +memberId
+  +storeId
+  +tableId
+  +timeSlot
+  +status
+  +confirm()
+  +cancel()
+}
+class Waitlist {
+  +rank
+  +promote()
+}
+interface ReservationRepository {
+  +save(reservation)
+  +findById(id)
+}
+class OutboxEvent {
+  +eventId
+  +aggregateId
+  +type
+  +payload
+}
+ReservationApplicationService --> ReservationPolicy
+ReservationApplicationService --> CapacityLockManager
+ReservationApplicationService --> ReservationRepository
+ReservationApplicationService --> OutboxEvent
+ReservationApplicationService --> Waitlist
+ReservationPolicy --> Reservation
+ReservationRepository --> Reservation
+OutboxEvent ..> Reservation : ReservationConfirmed/Cancelled
+note right of ReservationApplicationService
+事务边界：
+1. 校验会员/门店/猫咪状态
+2. 获取容量锁
+3. 保存预约和 Outbox
+4. 提交后异步发布事件
+end note
+@enduml

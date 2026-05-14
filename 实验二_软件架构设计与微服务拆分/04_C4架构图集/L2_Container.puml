@@ -1,0 +1,69 @@
+@startuml L2_Container
+title NekoCafé C4 L2 - Container View
+left to right direction
+skinparam componentStyle rectangle
+skinparam rectangle {
+  BackgroundColor #F7FBFF
+  BorderColor #1F4E79
+}
+actor "顾客/会员" as Customer
+actor "店员/猫咪管家" as StoreUser
+actor "总部运营" as Ops
+rectangle "客户端" {
+  component "小程序/Web 顾客端" as Web
+  component "门店工作台" as StaffUI
+  component "运营后台" as AdminUI
+}
+rectangle "边界层" {
+  component "API Gateway\n鉴权/限流/路由/traceId" as Gateway
+  component "BFF\n页面聚合/兼容旧端" as BFF
+}
+rectangle "核心服务" {
+  component "会员服务" as MemberSvc
+  component "门店服务" as StoreSvc
+  component "预约服务" as ReservationSvc
+  component "订单支付服务" as OrderSvc
+  component "猫咪档案服务" as CatSvc
+  component "推荐服务" as RecSvc
+  component "通知服务" as NotificationSvc
+  component "运营分析服务" as AnalyticsSvc
+}
+queue "Kafka Event Bus\n领域事件/Outbox" as MQ
+database "PostgreSQL\nDatabase per Service" as PG
+database "Redis\n容量锁/缓存/限流" as Redis
+database "Analytics Read Model\n指标快照/CQRS" as ReadModel
+cloud "支付/地图/通知/AI 外部系统" as External
+Customer --> Web
+StoreUser --> StaffUI
+Ops --> AdminUI
+Web --> Gateway
+StaffUI --> Gateway
+AdminUI --> Gateway
+Gateway --> BFF
+BFF --> MemberSvc
+BFF --> StoreSvc
+BFF --> ReservationSvc
+BFF --> OrderSvc
+BFF --> AnalyticsSvc
+ReservationSvc --> Redis : 容量锁
+ReservationSvc --> StoreSvc : 查询桌位/营业规则
+ReservationSvc --> MemberSvc : 校验会员/授权
+ReservationSvc --> CatSvc : 猫咪可互动状态
+ReservationSvc --> OrderSvc : 预约绑定订单
+ReservationSvc --> MQ : ReservationConfirmed
+OrderSvc --> MQ : OrderPaid/Refunded
+CatSvc --> MQ : CatHealthChanged
+MemberSvc --> MQ : ConsentChanged
+AnalyticsSvc <-- MQ : 消费事件
+NotificationSvc <-- MQ : 消费通知事件
+MemberSvc --> PG
+StoreSvc --> PG
+ReservationSvc --> PG
+OrderSvc --> PG
+CatSvc --> PG
+AnalyticsSvc --> ReadModel
+OrderSvc --> External : 支付
+StoreSvc --> External : 地图
+NotificationSvc --> External : 短信/小程序
+RecSvc --> External : AI 推荐
+@enduml

@@ -1,0 +1,35 @@
+@startuml L1_System_Context
+title NekoCafé C4 L1 - System Context
+left to right direction
+skinparam rectangle {
+  BackgroundColor #EAF3FF
+  BorderColor #1F4E79
+}
+skinparam actorStyle awesome
+actor "顾客/会员" as Customer
+actor "店员" as Staff
+actor "猫咪管家" as Keeper
+actor "店长/总部运营" as Ops
+rectangle "NekoCafé 智慧餐饮预约平台\n门店浏览、桌位预约、点单支付、会员、猫咪档案、运营看板" as System
+cloud "支付平台\n微信/支付宝/银联" as Payment
+cloud "地图服务\n定位/距离/城市" as Map
+cloud "短信/小程序通知" as Notify
+cloud "AI 推荐服务\n偏好匹配/推荐理由" as AI
+database "现有门店排号系统\n迁移期只读同步" as Legacy
+Customer --> System : 浏览门店/预约/点单/评价
+Staff --> System : 核销/调度/处理订单
+Keeper --> System : 健康打卡/维护猫咪状态
+Ops --> System : 看板/活动/门店配置
+System --> Payment : HTTPS 支付/退款回调
+System --> Map : HTTPS 距离与地址解析
+System --> Notify : 交易通知/异常提醒
+System --> AI : 脱敏特征推荐
+System --> Legacy : 迁移期同步
+note right of System
+关键质量属性：
+SLA >= 99.9%
+预约提交 P95 <= 350ms
+高峰 5000 QPS
+新增门店零停机
+end note
+@enduml
