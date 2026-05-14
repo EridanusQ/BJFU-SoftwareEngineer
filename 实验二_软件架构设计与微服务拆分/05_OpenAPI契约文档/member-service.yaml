@@ -1,0 +1,137 @@
+openapi: 3.0.3
+info:
+  title: NekoCafé Member Service API
+  version: 1.0.0
+  description: 会员服务，负责登录资料、偏好、隐私授权、积分和优惠券钱包。
+servers:
+  - url: https://api.nekocafe.example/v1
+security:
+  - bearerAuth: []
+paths:
+  /members/me:
+    get:
+      summary: 查询当前会员资料
+      responses:
+        "200":
+          description: 当前会员
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/MemberProfile" }
+    patch:
+      summary: 更新当前会员资料
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/UpdateMemberRequest" }
+      responses:
+        "200":
+          description: 更新后的会员
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/MemberProfile" }
+  /members/{memberId}:
+    get:
+      summary: 按 ID 查询会员摘要
+      parameters:
+        - in: path
+          name: memberId
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: 会员摘要
+  /members/me/preferences:
+    put:
+      summary: 更新猫咪和菜品偏好
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/PreferenceRequest" }
+      responses:
+        "200":
+          description: 已更新
+  /members/me/consents:
+    get:
+      summary: 查询隐私授权
+      responses:
+        "200":
+          description: 授权状态
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/Consent" }
+    put:
+      summary: 更新隐私授权
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/ConsentRequest" }
+      responses:
+        "200":
+          description: 授权已更新
+  /members/me/coupons:
+    get:
+      summary: 查询优惠券钱包
+      responses:
+        "200":
+          description: 优惠券列表
+  /members/me/points:
+    get:
+      summary: 查询积分账户
+      responses:
+        "200":
+          description: 积分余额
+  /members/me/delete-request:
+    post:
+      summary: 提交个人信息删除请求
+      responses:
+        "202":
+          description: 请求已受理
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    MemberProfile:
+      type: object
+      properties:
+        id: { type: string }
+        nickname: { type: string }
+        phoneMasked: { type: string }
+        level: { type: string }
+        points: { type: integer }
+        preferenceTags:
+          type: array
+          items: { type: string }
+    UpdateMemberRequest:
+      type: object
+      properties:
+        nickname: { type: string }
+        birthday: { type: string, format: date }
+    PreferenceRequest:
+      type: object
+      properties:
+        catTemperaments:
+          type: array
+          items: { type: string }
+        foodTags:
+          type: array
+          items: { type: string }
+    Consent:
+      type: object
+      properties:
+        type: { type: string, enum: [RECOMMENDATION, MARKETING, ANALYTICS] }
+        granted: { type: boolean }
+        updatedAt: { type: string, format: date-time }
+    ConsentRequest:
+      type: object
+      required: [type, granted]
+      properties:
+        type: { type: string }
+        granted: { type: boolean }

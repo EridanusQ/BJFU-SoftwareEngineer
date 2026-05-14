@@ -1,0 +1,201 @@
+openapi: 3.0.3
+info:
+  title: NekoCafé Reservation Service API
+  version: 1.0.0
+  description: 桌位预约服务，负责可用性查询、创建预约、候补、改期、取消和到店核销。
+servers:
+  - url: https://api.nekocafe.example/v1
+security:
+  - bearerAuth: []
+paths:
+  /reservations/availability:
+    get:
+      summary: 查询可预约桌位
+      parameters:
+        - in: query
+          name: storeId
+          required: true
+          schema: { type: string }
+        - in: query
+          name: date
+          required: true
+          schema: { type: string, format: date }
+        - in: query
+          name: partySize
+          required: true
+          schema: { type: integer, minimum: 1 }
+      responses:
+        "200":
+          description: 可预约桌位列表
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items: { $ref: "#/components/schemas/AvailabilitySlot" }
+  /reservations:
+    get:
+      summary: 查询预约列表
+      parameters:
+        - in: query
+          name: memberId
+          schema: { type: string }
+        - in: query
+          name: storeId
+          schema: { type: string }
+        - in: query
+          name: status
+          schema: { type: string }
+      responses:
+        "200":
+          description: 预约列表
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/ReservationPage" }
+    post:
+      summary: 创建预约
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/CreateReservationRequest" }
+      responses:
+        "201":
+          description: 已创建
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Reservation" }
+        "409":
+          description: 桌位冲突或容量不足
+          content:
+            application/json:
+              schema: { $ref: "./common/error-response.yaml#/ErrorResponse" }
+  /reservations/{reservationId}:
+    get:
+      summary: 查询预约详情
+      parameters:
+        - $ref: "#/components/parameters/ReservationId"
+      responses:
+        "200":
+          description: 预约详情
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Reservation" }
+    patch:
+      summary: 改期或更新特殊需求
+      parameters:
+        - $ref: "#/components/parameters/ReservationId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/UpdateReservationRequest" }
+      responses:
+        "200":
+          description: 更新后的预约
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Reservation" }
+  /reservations/{reservationId}/cancel:
+    post:
+      summary: 取消预约
+      parameters:
+        - $ref: "#/components/parameters/ReservationId"
+      responses:
+        "200":
+          description: 已取消
+  /reservations/{reservationId}/check-in:
+    post:
+      summary: 到店核销
+      parameters:
+        - $ref: "#/components/parameters/ReservationId"
+      responses:
+        "200":
+          description: 已核销
+  /waitlist:
+    post:
+      summary: 加入候补
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/CreateWaitlistRequest" }
+      responses:
+        "201":
+          description: 候补已创建
+  /waitlist/{waitlistId}:
+    delete:
+      summary: 取消候补
+      parameters:
+        - in: path
+          name: waitlistId
+          required: true
+          schema: { type: string }
+      responses:
+        "204":
+          description: 已取消
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  parameters:
+    ReservationId:
+      in: path
+      name: reservationId
+      required: true
+      schema: { type: string }
+  schemas:
+    AvailabilitySlot:
+      type: object
+      properties:
+        storeId: { type: string }
+        tableId: { type: string }
+        timeSlot: { type: string }
+        capacity: { type: integer }
+        catAvailable: { type: boolean }
+    CreateReservationRequest:
+      type: object
+      required: [memberId, storeId, tableId, timeSlot, partySize]
+      properties:
+        memberId: { type: string }
+        storeId: { type: string }
+        tableId: { type: string }
+        timeSlot: { type: string }
+        partySize: { type: integer, minimum: 1 }
+        specialRequest: { type: string, maxLength: 500 }
+    UpdateReservationRequest:
+      type: object
+      properties:
+        timeSlot: { type: string }
+        specialRequest: { type: string, maxLength: 500 }
+    CreateWaitlistRequest:
+      type: object
+      required: [memberId, storeId, timeSlot, partySize]
+      properties:
+        memberId: { type: string }
+        storeId: { type: string }
+        timeSlot: { type: string }
+        partySize: { type: integer }
+    Reservation:
+      type: object
+      properties:
+        id: { type: string }
+        memberId: { type: string }
+        storeId: { type: string }
+        tableId: { type: string }
+        timeSlot: { type: string }
+        status: { type: string, enum: [PENDING, CONFIRMED, CHECKED_IN, CANCELLED, NO_SHOW] }
+        traceId: { type: string }
+    ReservationPage:
+      type: object
+      properties:
+        items:
+          type: array
+          items: { $ref: "#/components/schemas/Reservation" }
+        page: { type: integer }
+        size: { type: integer }
+        total: { type: integer }
