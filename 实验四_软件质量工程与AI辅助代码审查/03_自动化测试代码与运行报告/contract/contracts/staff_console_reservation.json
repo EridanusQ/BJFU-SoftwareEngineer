@@ -1,0 +1,10 @@
+{
+  "consumer": "staff-console",
+  "provider": "reservation-service",
+  "request": {"method": "POST", "path": "/staff/reservations/{id}/assign-table"},
+  "response": {
+    "status": 200,
+    "required_fields": ["reservation_id", "table_id", "status", "trace_id"],
+    "error_schema": ["code", "message", "details"]
+  }
+}

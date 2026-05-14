@@ -1,0 +1,10 @@
+{
+  "consumer": "member-web",
+  "provider": "member-service",
+  "request": {"method": "GET", "path": "/members/me"},
+  "response": {
+    "status": 200,
+    "required_fields": ["member_id", "nickname", "phone_masked", "consent_marketing"],
+    "error_schema": ["code", "message", "details"]
+  }
+}

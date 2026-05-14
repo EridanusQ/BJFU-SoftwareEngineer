@@ -1,0 +1,62 @@
+{
+  "generated_at": "2026-05-14T12:42:10",
+  "tests_run": 38,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "was_successful": true,
+  "line_covered": 79,
+  "line_total": 109,
+  "line_coverage_pct": 72.47706422018348,
+  "branch_covered": 28,
+  "branch_total": 40,
+  "branch_coverage_pct": 70.0,
+  "mutation_score_pct": 88.88888888888889,
+  "mutants": [
+    {
+      "id": "MUT-001",
+      "description": "party_size 下界弱化",
+      "status": "KILLED"
+    },
+    {
+      "id": "MUT-002",
+      "description": "duration 上界错误",
+      "status": "KILLED"
+    },
+    {
+      "id": "MUT-003",
+      "description": "table capacity 比较符错误",
+      "status": "KILLED"
+    },
+    {
+      "id": "MUT-004",
+      "description": "橘猫语义误判为菜单",
+      "status": "KILLED"
+    },
+    {
+      "id": "MUT-005",
+      "description": "手机号不脱敏",
+      "status": "KILLED"
+    },
+    {
+      "id": "MUT-006",
+      "description": "取消操作不幂等",
+      "status": "KILLED"
+    },
+    {
+      "id": "MUT-007",
+      "description": "押金非负保护删除",
+      "status": "SURVIVED"
+    },
+    {
+      "id": "MUT-008",
+      "description": "时段步长错误",
+      "status": "KILLED"
+    },
+    {
+      "id": "MUT-009",
+      "description": "备注不做 HTML 转义",
+      "status": "KILLED"
+    }
+  ]
+}

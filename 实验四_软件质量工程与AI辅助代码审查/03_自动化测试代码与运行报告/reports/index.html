@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <title>NekoCafé Experiment 4 Test Report</title>
+  <style>
+    body { font-family: Arial, 'Microsoft YaHei', sans-serif; margin: 32px; color: #1f2937; }
+    h1 { margin-bottom: 4px; }
+    .meta { color: #6b7280; margin-bottom: 24px; }
+    .grid { display: grid; grid-template-columns: repeat(5, minmax(120px, 1fr)); gap: 12px; }
+    .card { border: 1px solid #d1d5db; border-radius: 6px; padding: 14px; background: #f9fafb; }
+    .card b { display: block; font-size: 24px; margin-top: 6px; }
+    .pass { color: #047857; font-weight: 700; }
+    .fail { color: #b91c1c; font-weight: 700; }
+    pre { white-space: pre-wrap; border: 1px solid #e5e7eb; padding: 12px; background: #111827; color: #f9fafb; border-radius: 6px; }
+    table { border-collapse: collapse; width: 100%; margin-top: 16px; }
+    th, td { border: 1px solid #d1d5db; padding: 8px; text-align: left; }
+    th { background: #e0f2fe; }
+  </style>
+</head>
+<body>
+  <h1>NekoCafé 实验四自动化测试运行报告</h1>
+  <div class="meta">生成时间：2026-05-14T12:42:10；运行结果：<span class="pass">PASS</span></div>
+  <section class="grid">
+    <div class="card">测试总数<b>38</b></div>
+    <div class="card">失败/错误<b>0</b></div>
+    <div class="card">行覆盖率<b>72.5%</b></div>
+    <div class="card">分支覆盖率<b>70.0%</b></div>
+    <div class="card">变异分数<b>88.9%</b></div>
+  </section>
+  <h2>测试输出</h2>
+  <pre>test_available_slots_standard_and_invalid_hours (unit.test_example.ReservationUnitTest.test_available_slots_standard_and_invalid_hours) ... ok
+test_cancel_is_idempotent (unit.test_example.ReservationUnitTest.test_cancel_is_idempotent) ... ok
+test_create_reservation_success (unit.test_example.ReservationUnitTest.test_create_reservation_success) ... ok
+test_customer_required (unit.test_example.ReservationUnitTest.test_customer_required) ... ok
+test_duration_boundary (unit.test_example.ReservationUnitTest.test_duration_boundary) ... ok
+test_error_payload_as_dict (unit.test_example.ReservationUnitTest.test_error_payload_as_dict) ... ok
+test_invalid_deposit_input_rejected (unit.test_example.ReservationUnitTest.test_invalid_deposit_input_rejected) ... ok
+test_orange_cat_not_orange_menu (unit.test_example.ReservationUnitTest.test_orange_cat_not_orange_menu) ... ok
+test_privacy_helpers (unit.test_example.ReservationUnitTest.test_privacy_helpers) ... ok
+test_short_phone_mask_and_false_consent (unit.test_example.ReservationUnitTest.test_short_phone_mask_and_false_consent) ... ok
+test_start_time_boundary (unit.test_example.ReservationUnitTest.test_start_time_boundary) ... ok
+test_table_capacity_must_cover_party (unit.test_example.ReservationUnitTest.test_table_capacity_must_cover_party) ... ok
+test_unknown_and_dog_classification (unit.test_example.ReservationUnitTest.test_unknown_and_dog_classification) ... ok
+test_zero_party_size_rejected (unit.test_example.ReservationUnitTest.test_zero_party_size_rejected) ... ok
+test_available_slots_shrink_when_duration_grows (property.test_pbt_example.DomainPropertyTest.test_available_slots_shrink_when_duration_grows) ... ok
+test_deposit_is_non_negative_and_monotonic_for_party_size (property.test_pbt_example.DomainPropertyTest.test_deposit_is_non_negative_and_monotonic_for_party_size) ... ok
+test_generated_valid_reservations_have_stable_id_and_safe_note (property.test_pbt_example.DomainPropertyTest.test_generated_valid_reservations_have_stable_id_and_safe_note) ... ok
+test_orange_cat_semantics_are_stable (property.test_pbt_example.DomainPropertyTest.test_orange_cat_semantics_are_stable) ... ok
+test_phone_mask_never_exposes_middle_digits (property.test_pbt_example.DomainPropertyTest.test_phone_mask_never_exposes_middle_digits) ... ok
+test_all_contract_files_are_valid_json (contract.test_contracts.ContractVerifierTest.test_all_contract_files_are_valid_json) ... ok
+test_error_schema_is_uniform (contract.test_contracts.ContractVerifierTest.test_error_schema_is_uniform) ... ok
+test_success_responses_define_required_fields (contract.test_contracts.ContractVerifierTest.test_success_responses_define_required_fields) ... ok
+test_three_consumer_provider_pairs_exist (contract.test_contracts.ContractVerifierTest.test_three_consumer_provider_pairs_exist) ... ok
+test_cancel_flow_updates_state (integration.test_db_smoke.ReservationIntegrationTest.test_cancel_flow_updates_state) ... ok
+test_cancelled_reservation_is_idempotent (integration.test_db_smoke.ReservationIntegrationTest.test_cancelled_reservation_is_idempotent) ... ok
+test_capacity_error_does_not_persist (integration.test_db_smoke.ReservationIntegrationTest.test_capacity_error_does_not_persist) ... ok
+test_create_and_read_reservation (integration.test_db_smoke.ReservationIntegrationTest.test_create_and_read_reservation) ... ok
+test_duplicate_request_generates_same_id (integration.test_db_smoke.ReservationIntegrationTest.test_duplicate_request_generates_same_id) ... ok
+test_future_boundary_accepts_day_30 (integration.test_db_smoke.ReservationIntegrationTest.test_future_boundary_accepts_day_30) ... ok
+test_future_boundary_rejects_day_31 (integration.test_db_smoke.ReservationIntegrationTest.test_future_boundary_rejects_day_31) ... ok
+test_invalid_cancel_state_raises (integration.test_db_smoke.ReservationIntegrationTest.test_invalid_cancel_state_raises) ... ok
+test_many_reservations_have_unique_ids (integration.test_db_smoke.ReservationIntegrationTest.test_many_reservations_have_unique_ids) ... ok
+test_menu_note_rejected (integration.test_db_smoke.ReservationIntegrationTest.test_menu_note_rejected) ... ok
+test_phone_error_does_not_persist (integration.test_db_smoke.ReservationIntegrationTest.test_phone_error_does_not_persist) ... ok
+test_special_note_is_escaped (integration.test_db_smoke.ReservationIntegrationTest.test_special_note_is_escaped) ... ok
+test_new_user_register_browse_book_cancel (e2e.test_user_journey_book.UserJourneyE2ETest.test_new_user_register_browse_book_cancel) ... ok
+test_old_member_recommend_order_pay_review (e2e.test_user_journey_book.UserJourneyE2ETest.test_old_member_recommend_order_pay_review) ... ok
+test_staff_accept_assign_finish_dashboard (e2e.test_user_journey_book.UserJourneyE2ETest.test_staff_accept_assign_finish_dashboard) ... ok
+
+----------------------------------------------------------------------
+Ran 38 tests in 0.040s
+
+OK
+</pre>
+  <h2>变异样本</h2>
+  <table><thead><tr><th>ID</th><th>描述</th><th>状态</th></tr></thead><tbody><tr><td>MUT-001</td><td>party_size 下界弱化</td><td>KILLED</td></tr>
+<tr><td>MUT-002</td><td>duration 上界错误</td><td>KILLED</td></tr>
+<tr><td>MUT-003</td><td>table capacity 比较符错误</td><td>KILLED</td></tr>
+<tr><td>MUT-004</td><td>橘猫语义误判为菜单</td><td>KILLED</td></tr>
+<tr><td>MUT-005</td><td>手机号不脱敏</td><td>KILLED</td></tr>
+<tr><td>MUT-006</td><td>取消操作不幂等</td><td>KILLED</td></tr>
+<tr><td>MUT-007</td><td>押金非负保护删除</td><td>SURVIVED</td></tr>
+<tr><td>MUT-008</td><td>时段步长错误</td><td>KILLED</td></tr>
+<tr><td>MUT-009</td><td>备注不做 HTML 转义</td><td>KILLED</td></tr></tbody></table>
+</body>
+</html>

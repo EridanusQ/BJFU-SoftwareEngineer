@@ -1,0 +1,10 @@
+{
+  "consumer": "booking-web",
+  "provider": "reservation-service",
+  "request": {"method": "POST", "path": "/reservations"},
+  "response": {
+    "status": 201,
+    "required_fields": ["reservation_id", "status", "phone_masked", "party_size", "start_at", "deposit"],
+    "error_schema": ["code", "message", "details"]
+  }
+}

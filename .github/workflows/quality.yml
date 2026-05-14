@@ -1,0 +1,28 @@
+name: lab4-quality
+
+on:
+  push:
+    branches: [experiment-4]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run experiment 4 automation suite
+        run: |
+          python "实验四_软件质量工程与AI辅助代码审查/03_自动化测试代码与运行报告/tools/run_tests.py"
+      - name: Upload quality report
+        uses: actions/upload-artifact@v4
+        with:
+          name: lab4-quality-report
+          path: |
+            实验四_软件质量工程与AI辅助代码审查/03_自动化测试代码与运行报告/reports/index.html
+            实验四_软件质量工程与AI辅助代码审查/03_自动化测试代码与运行报告/reports/test-results.json
+            实验四_软件质量工程与AI辅助代码审查/03_自动化测试代码与运行报告/reports/coverage-summary.txt
