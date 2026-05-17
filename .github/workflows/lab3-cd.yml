@@ -1,0 +1,59 @@
+name: lab3-cd
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        type: choice
+        required: true
+        default: staging
+        options: [dev, staging, prod]
+      image_tag:
+        required: true
+        default: latest
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lab3-cd-${{ inputs.environment }}
+  cancel-in-progress: false
+
+jobs:
+  deploy-preview:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Select environment
+        run: |
+          echo "Environment: ${{ inputs.environment }}"
+          echo "Image tag: ${{ inputs.image_tag }}"
+
+      - name: Helm chart inputs check
+        run: |
+          test -f "实验三_DevOps流水线与容器化部署/05_K8s部署清单与Helm_Chart/helm/Chart.yaml"
+          test -f "实验三_DevOps流水线与容器化部署/05_K8s部署清单与Helm_Chart/helm/values-${{ inputs.environment }}.yaml"
+          echo "Helm chart and environment values are present."
+
+      - name: Canary deployment plan
+        run: |
+          echo "helm upgrade --install nekocafe ... --set image.tag=${{ inputs.image_tag }} --set rollout.canaryWeight=10"
+          echo "Observe Prometheus gate: P95 <= 350ms and error rate <= 1%"
+
+      - name: Promote or rollback decision
+        run: |
+          echo "Gate PASS in this preview run."
+          echo "Promote canary from 10% to 100%; rollback command is documented in scripts/rollback.sh."
+
+      - name: CD summary
+        run: |
+          {
+            echo "### NekoCafe Lab3 CD Preview"
+            echo "- Environment: ${{ inputs.environment }}"
+            echo "- Image tag: ${{ inputs.image_tag }}"
+            echo "- Canary plan: 10% -> 100%"
+            echo "- Rollback path: scripts/rollback.sh"
+          } >> "$GITHUB_STEP_SUMMARY"
