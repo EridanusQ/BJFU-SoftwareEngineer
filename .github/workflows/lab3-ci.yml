@@ -4,9 +4,6 @@ on:
   workflow_dispatch:
   push:
     branches: [experiment-3]
-    paths:
-      - "实验三_DevOps流水线与容器化部署/**"
-      - ".github/workflows/lab3-ci.yml"
 
 permissions:
   contents: read
@@ -30,27 +27,38 @@ jobs:
         with:
           node-version: "20"
           cache: npm
-          cache-dependency-path: "实验三_DevOps流水线与容器化部署/02_源代码与配置仓库/services/member/package-lock.json"
+
+      - name: Prepare ASCII workspace
+        shell: bash
+        run: |
+          src="$(find . -maxdepth 2 -type d -name '02_*' | head -n 1)"
+          if [ -z "$src" ]; then
+            echo "Cannot locate lab3 source repository directory."
+            find . -maxdepth 3 -type d
+            exit 1
+          fi
+          cp -R "$src" lab3-workspace
+          echo "LAB3_WORKSPACE=lab3-workspace" >> "$GITHUB_ENV"
+          find lab3-workspace -maxdepth 2 -type d
 
       - name: Python unit tests
-        working-directory: "实验三_DevOps流水线与容器化部署/02_源代码与配置仓库"
+        working-directory: lab3-workspace
         run: python -m unittest discover -s services/reservation/tests -v
 
       - name: Node unit tests
-        working-directory: "实验三_DevOps流水线与容器化部署/02_源代码与配置仓库/services/member"
+        working-directory: lab3-workspace/services/member
         run: npm ci && npm test
 
       - name: Docker build inputs check
         run: |
-          test -f "实验三_DevOps流水线与容器化部署/02_源代码与配置仓库/services/reservation/Dockerfile"
-          test -f "实验三_DevOps流水线与容器化部署/02_源代码与配置仓库/services/member/Dockerfile"
+          test -f "lab3-workspace/services/reservation/Dockerfile"
+          test -f "lab3-workspace/services/member/Dockerfile"
           echo "Docker build contexts are present."
 
       - name: Helm and observability config check
         run: |
-          test -f "实验三_DevOps流水线与容器化部署/05_K8s部署清单与Helm_Chart/helm/Chart.yaml"
-          test -f "实验三_DevOps流水线与容器化部署/02_源代码与配置仓库/config/prometheus/prometheus.yml"
-          test -f "实验三_DevOps流水线与容器化部署/02_源代码与配置仓库/config/grafana/dashboards/nekocafe-devops.json"
+          test -f "lab3-workspace/config/prometheus/prometheus.yml"
+          test -f "lab3-workspace/config/grafana/dashboards/nekocafe-devops.json"
           echo "Helm, Prometheus, and Grafana configs are present."
 
       - name: CI summary

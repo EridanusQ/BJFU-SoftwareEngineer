@@ -32,10 +32,24 @@ jobs:
           echo "Environment: ${{ inputs.environment }}"
           echo "Image tag: ${{ inputs.image_tag }}"
 
+      - name: Prepare ASCII workspace
+        shell: bash
+        run: |
+          chart="$(find . -maxdepth 3 -type d -name '05_*' | head -n 1)"
+          source_repo="$(find . -maxdepth 3 -type d -name '02_*' | head -n 1)"
+          if [ -z "$chart" ] || [ -z "$source_repo" ]; then
+            echo "Cannot locate lab3 chart/source directories."
+            find . -maxdepth 3 -type d
+            exit 1
+          fi
+          cp -R "$chart" lab3-chart
+          cp -R "$source_repo" lab3-workspace
+          find lab3-chart -maxdepth 2 -type f
+
       - name: Helm chart inputs check
         run: |
-          test -f "实验三_DevOps流水线与容器化部署/05_K8s部署清单与Helm_Chart/helm/Chart.yaml"
-          test -f "实验三_DevOps流水线与容器化部署/05_K8s部署清单与Helm_Chart/helm/values-${{ inputs.environment }}.yaml"
+          test -f "lab3-chart/helm/Chart.yaml"
+          test -f "lab3-chart/helm/values-${{ inputs.environment }}.yaml"
           echo "Helm chart and environment values are present."
 
       - name: Canary deployment plan
