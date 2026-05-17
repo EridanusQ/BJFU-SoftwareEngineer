@@ -26,7 +26,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: npm
 
       - name: Prepare ASCII workspace
         shell: bash
@@ -42,8 +41,8 @@ jobs:
           find lab3-workspace -maxdepth 2 -type d
 
       - name: Python unit tests
-        working-directory: lab3-workspace
-        run: python -m unittest discover -s services/reservation/tests -v
+        working-directory: lab3-workspace/services/reservation
+        run: python -m unittest discover -s tests -v
 
       - name: Node unit tests
         working-directory: lab3-workspace/services/member
