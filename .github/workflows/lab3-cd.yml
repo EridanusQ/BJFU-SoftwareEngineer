@@ -1,6 +1,8 @@
 name: lab3-cd
 
 on:
+  push:
+    branches: [experiment-3]
   workflow_dispatch:
     inputs:
       environment:
@@ -16,21 +18,21 @@ permissions:
   contents: read
 
 concurrency:
-  group: lab3-cd-${{ inputs.environment }}
+  group: lab3-cd-${{ github.event.inputs.environment || 'staging' }}
   cancel-in-progress: false
 
 jobs:
   deploy-preview:
     runs-on: ubuntu-latest
-    environment: ${{ inputs.environment }}
+    environment: ${{ github.event.inputs.environment || 'staging' }}
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
 
       - name: Select environment
         run: |
-          echo "Environment: ${{ inputs.environment }}"
-          echo "Image tag: ${{ inputs.image_tag }}"
+          echo "Environment: ${{ github.event.inputs.environment || 'staging' }}"
+          echo "Image tag: ${{ github.event.inputs.image_tag || github.sha }}"
 
       - name: Prepare ASCII workspace
         shell: bash
@@ -49,12 +51,12 @@ jobs:
       - name: Helm chart inputs check
         run: |
           test -f "lab3-chart/helm/Chart.yaml"
-          test -f "lab3-chart/helm/values-${{ inputs.environment }}.yaml"
+          test -f "lab3-chart/helm/values-${{ github.event.inputs.environment || 'staging' }}.yaml"
           echo "Helm chart and environment values are present."
 
       - name: Canary deployment plan
         run: |
-          echo "helm upgrade --install nekocafe ... --set image.tag=${{ inputs.image_tag }} --set rollout.canaryWeight=10"
+          echo "helm upgrade --install nekocafe ... --set image.tag=${{ github.event.inputs.image_tag || github.sha }} --set rollout.canaryWeight=10"
           echo "Observe Prometheus gate: P95 <= 350ms and error rate <= 1%"
 
       - name: Promote or rollback decision
@@ -66,8 +68,8 @@ jobs:
         run: |
           {
             echo "### NekoCafe Lab3 CD Preview"
-            echo "- Environment: ${{ inputs.environment }}"
-            echo "- Image tag: ${{ inputs.image_tag }}"
+            echo "- Environment: ${{ github.event.inputs.environment || 'staging' }}"
+            echo "- Image tag: ${{ github.event.inputs.image_tag || github.sha }}"
             echo "- Canary plan: 10% -> 100%"
             echo "- Rollback path: scripts/rollback.sh"
           } >> "$GITHUB_STEP_SUMMARY"
