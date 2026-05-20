@@ -26,7 +26,7 @@ def discover_suite() -> unittest.TestSuite:
 
 def executable_lines(path: Path) -> set[int]:
     lines = set()
-    for i, line in enumerate(path.read_text(encoding="utf-8").splitlines(), start=1):
+    for index, line in enumerate(path.read_text(encoding="utf-8").splitlines(), start=1):
         stripped = line.strip()
         if not stripped or stripped.startswith("#"):
             continue
@@ -34,7 +34,7 @@ def executable_lines(path: Path) -> set[int]:
             continue
         if stripped.startswith(("from ", "import ", "def ", "class ", "@")):
             continue
-        lines.add(i)
+        lines.add(index)
     return lines
 
 
@@ -45,21 +45,36 @@ def compute_coverage(counts: dict) -> tuple[int, int, float]:
     for path in source_files:
         for line in executable_lines(path):
             executable.add((str(path), line))
-    for (filename, lineno), count in counts.items():
-        p = str(Path(filename).resolve())
+    for (filename, line_no), count in counts.items():
+        resolved = str(Path(filename).resolve())
         for source in source_files:
-            if p == str(source.resolve()) and count > 0:
-                executed.add((str(source), lineno))
+            if resolved == str(source.resolve()) and count > 0:
+                executed.add((str(source), line_no))
     covered = len(executed & executable)
     total = len(executable)
     pct = covered / total * 100 if total else 100.0
     return covered, total, pct
 
 
+def mutant_samples() -> list[dict[str, str]]:
+    return [
+        {"id": "MUT-001", "description": "party_size 下界弱化", "status": "KILLED"},
+        {"id": "MUT-002", "description": "duration 上界错误", "status": "KILLED"},
+        {"id": "MUT-003", "description": "table capacity 比较符错误", "status": "KILLED"},
+        {"id": "MUT-004", "description": "橘猫语义误判为菜单", "status": "KILLED"},
+        {"id": "MUT-005", "description": "手机号不脱敏", "status": "KILLED"},
+        {"id": "MUT-006", "description": "取消操作不幂等", "status": "KILLED"},
+        {"id": "MUT-007", "description": "押金非负保护删除", "status": "SURVIVED"},
+        {"id": "MUT-008", "description": "时段步长错误", "status": "KILLED"},
+        {"id": "MUT-009", "description": "备注不做 HTML 转义", "status": "KILLED"},
+    ]
+
+
 def build_html(summary: dict, output: str) -> str:
     status = "PASS" if summary["was_successful"] else "FAIL"
     rows = "\n".join(
-        f"<tr><td>{html.escape(item['id'])}</td><td>{html.escape(item['description'])}</td><td>{item['status']}</td></tr>"
+        f"<tr><td>{html.escape(item['id'])}</td>"
+        f"<td>{html.escape(item['description'])}</td><td>{item['status']}</td></tr>"
         for item in summary["mutants"]
     )
     return f"""<!doctype html>
@@ -103,27 +118,19 @@ def build_html(summary: dict, output: str) -> str:
 def main() -> int:
     reports = ROOT / "reports"
     reports.mkdir(exist_ok=True)
+
     suite = discover_suite()
     stream = io.StringIO()
     runner = unittest.TextTestRunner(stream=stream, verbosity=2)
     tracer = trace.Trace(count=True, trace=False)
     result_holder = {}
     tracer.runfunc(lambda: result_holder.setdefault("result", runner.run(suite)))
+
     result = result_holder["result"]
     output = stream.getvalue()
     covered, total, line_pct = compute_coverage(tracer.results().counts)
-    mutants = [
-        {"id": "MUT-001", "description": "party_size 下界弱化", "status": "KILLED"},
-        {"id": "MUT-002", "description": "duration 上界错误", "status": "KILLED"},
-        {"id": "MUT-003", "description": "table capacity 比较符错误", "status": "KILLED"},
-        {"id": "MUT-004", "description": "橘猫语义误判为菜单", "status": "KILLED"},
-        {"id": "MUT-005", "description": "手机号不脱敏", "status": "KILLED"},
-        {"id": "MUT-006", "description": "取消操作不幂等", "status": "KILLED"},
-        {"id": "MUT-007", "description": "押金非负保护删除", "status": "SURVIVED"},
-        {"id": "MUT-008", "description": "时段步长错误", "status": "KILLED"},
-        {"id": "MUT-009", "description": "备注不做 HTML 转义", "status": "KILLED"},
-    ]
-    killed = sum(1 for m in mutants if m["status"] == "KILLED")
+    mutants = mutant_samples()
+    killed = sum(1 for mutant in mutants if mutant["status"] == "KILLED")
     summary = {
         "generated_at": datetime.now().isoformat(timespec="seconds"),
         "tests_run": result.testsRun,
@@ -140,6 +147,7 @@ def main() -> int:
         "mutation_score_pct": killed / len(mutants) * 100,
         "mutants": mutants,
     }
+
     (reports / "test-results.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
     (reports / "coverage-summary.txt").write_text(
         f"line_coverage={line_pct:.1f}% ({covered}/{total})\nbranch_coverage=70.0% (28/40)\n",

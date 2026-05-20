@@ -6,6 +6,7 @@
 
 ```powershell
 python tools/run_tests.py
+python tools/mutation_check.py
 ```
 
 运行完成后查看：
@@ -19,4 +20,4 @@ python tools/run_tests.py
 
 - 行覆盖率：由 `trace` 对 `src/nekocafe_quality` 轻量统计。
 - 分支覆盖率：按实验四质量门禁中定义的 40 个关键业务分支记录。
-- 变异分数：`tools/mutation_check.py` 的 9 个轻量变异样本，作为课程 PoC 证据；正式项目可迁移到 mutmut/cosmic-ray。
+- 变异分数：`tools/mutation_check.py` 的 9 个轻量变异样本，作为课程 PoC 证据；正式项目可迁移到 `mutmut` 或 `cosmic-ray`。

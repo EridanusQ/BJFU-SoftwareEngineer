@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
+
 ROOT = Path(__file__).resolve().parents[1]
 
 MUTANTS = [
@@ -20,11 +21,19 @@ MUTANTS = [
 def main() -> int:
     killed = sum(1 for _, _, status in MUTANTS if status == "KILLED")
     score = killed / len(MUTANTS) * 100
-    lines = ["# 轻量变异检查报告", "", f"变异样本数：{len(MUTANTS)}", f"杀死变异：{killed}", f"变异分数：{score:.1f}%", ""]
-    lines.append("| ID | 变异描述 | 状态 |")
-    lines.append("| --- | --- | --- |")
-    for mid, desc, status in MUTANTS:
-        lines.append(f"| {mid} | {desc} | {status} |")
+    lines = [
+        "# 轻量变异检查报告",
+        "",
+        f"变异样本数：{len(MUTANTS)}",
+        f"杀死变异：{killed}",
+        f"变异分数：{score:.1f}%",
+        "",
+        "| ID | 变异描述 | 状态 |",
+        "| --- | --- | --- |",
+    ]
+    for mutant_id, description, status in MUTANTS:
+        lines.append(f"| {mutant_id} | {description} | {status} |")
+
     reports = ROOT / "reports"
     reports.mkdir(exist_ok=True)
     (reports / "mutation-summary.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
