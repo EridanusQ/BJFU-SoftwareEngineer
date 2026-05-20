@@ -26,23 +26,23 @@ jobs:
         with:
           node-version: "20"
           cache: npm
-          cache-dependency-path: 实验三_DevOps流水线与容器化部署/02_源代码与配置仓库/services/member/package-lock.json
+          cache-dependency-path: 实验三_DevOps流水线与容器化部署/D3-2_源代码与配置仓库/services/member/package-lock.json
       - uses: actions/cache@v4
         with:
           path: ~/.cache/pip
           key: pip-${{ runner.os }}-${{ hashFiles('**/requirements*.txt') }}
       - name: Python unit tests
-        working-directory: 实验三_DevOps流水线与容器化部署/02_源代码与配置仓库
+        working-directory: 实验三_DevOps流水线与容器化部署/D3-2_源代码与配置仓库
         run: python -m unittest discover -s services/reservation/tests -v
       - name: Node unit tests
-        working-directory: 实验三_DevOps流水线与容器化部署/02_源代码与配置仓库/services/member
+        working-directory: 实验三_DevOps流水线与容器化部署/D3-2_源代码与配置仓库/services/member
         run: npm ci && npm test
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
       - name: Build reservation image
         uses: docker/build-push-action@v6
         with:
-          context: 实验三_DevOps流水线与容器化部署/02_源代码与配置仓库/services/reservation
+          context: 实验三_DevOps流水线与容器化部署/D3-2_源代码与配置仓库/services/reservation
           tags: nekocafe/reservation:${{ github.sha }}
           load: true
           cache-from: type=gha
@@ -50,7 +50,7 @@ jobs:
       - name: Build member image
         uses: docker/build-push-action@v6
         with:
-          context: 实验三_DevOps流水线与容器化部署/02_源代码与配置仓库/services/member
+          context: 实验三_DevOps流水线与容器化部署/D3-2_源代码与配置仓库/services/member
           tags: nekocafe/member:${{ github.sha }}
           load: true
           cache-from: type=gha
