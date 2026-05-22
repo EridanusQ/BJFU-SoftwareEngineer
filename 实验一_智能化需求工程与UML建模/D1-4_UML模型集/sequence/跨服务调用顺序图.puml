@@ -1,20 +1,33 @@
 @startuml
-actor "会员" as Member
-participant "API 网关" as Gateway
+skinparam backgroundColor #F6FBF8
+skinparam shadowing false
+skinparam defaultFontName Microsoft YaHei
+actor "顾客端" as Client
+participant "API网关" as Gateway
+participant "预约服务" as Reserve
 participant "会员服务" as MemberSvc
-participant "推荐服务" as RecSvc
-participant "预约服务" as ReservationSvc
-participant "猫咪档案服务" as CatSvc
-participant "通知服务" as Notify
-Member -> Gateway: 提交桌位预约
-Gateway -> MemberSvc: 校验登录与偏好授权
-MemberSvc --> Gateway: 会员画像摘要
-Gateway -> CatSvc: 查询猫咪可互动状态
-CatSvc --> Gateway: 可互动猫咪列表
-Gateway -> RecSvc: 请求桌位/猫咪推荐
-RecSvc --> Gateway: 推荐方案与理由
-Gateway -> ReservationSvc: 创建预约
-ReservationSvc --> Gateway: 预约号与状态
-Gateway -> Notify: 发送确认通知
-Gateway --> Member: 返回预约成功
+participant "支付平台" as Pay
+participant "通知服务" as Msg
+participant "监控/日志" as Obs
+Client -> Gateway: 提交预约请求(traceId)
+Gateway -> Obs: 记录入口日志
+Gateway -> Reserve: 鉴权后转发预约参数
+Reserve -> MemberSvc: 查询会员等级/优惠/授权
+MemberSvc --> Reserve: 返回权益与限制
+Reserve -> Reserve: 校验时段、人数、猫咪状态
+alt 锁桌成功
+  Reserve -> Reserve: 写入桌位锁和预约草稿
+  Reserve -> Pay: 创建订金支付
+  Pay --> Reserve: 支付回调(成功/失败)
+  Reserve -> Obs: 记录支付回调与状态变更
+  Reserve -> Msg: 发送确认/提醒消息
+  alt 通知失败
+    Msg -> Msg: 进入补偿队列并重试
+    Msg -> Obs: 记录失败原因
+  end
+  Msg --> Client: 推送预约结果
+else 锁桌失败
+  Reserve --> Client: 返回候补或重新选择提示
+  Reserve -> Obs: 记录库存冲突
+end
 @enduml

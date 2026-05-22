@@ -1,22 +1,97 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="560" viewBox="0 0 900 560">
-<rect width="100%" height="100%" fill="#ffffff"/>
-<text x="40" y="48" font-family="Microsoft YaHei, Arial" font-size="26" font-weight="700" fill="#1f2937">NekoCafé UML 导出预览</text>
-<text x="40" y="82" font-family="Microsoft YaHei, Arial" font-size="18" fill="#4b5563">跨服务调用顺序图.svg</text>
-<rect x="60" y="120" rx="10" ry="10" width="760" height="42" fill="#eef6ff" stroke="#2563eb"/>
-<text x="82" y="147" font-family="Microsoft YaHei, Arial" font-size="17" fill="#111827">API网关</text>
-<line x1="440" y1="162" x2="440" y2="188" stroke="#6b7280" stroke-width="2"/>
-<rect x="60" y="190" rx="10" ry="10" width="760" height="42" fill="#eef6ff" stroke="#2563eb"/>
-<text x="82" y="217" font-family="Microsoft YaHei, Arial" font-size="17" fill="#111827">会员服务</text>
-<line x1="440" y1="232" x2="440" y2="258" stroke="#6b7280" stroke-width="2"/>
-<rect x="60" y="260" rx="10" ry="10" width="760" height="42" fill="#eef6ff" stroke="#2563eb"/>
-<text x="82" y="287" font-family="Microsoft YaHei, Arial" font-size="17" fill="#111827">猫咪档案服务</text>
-<line x1="440" y1="302" x2="440" y2="328" stroke="#6b7280" stroke-width="2"/>
-<rect x="60" y="330" rx="10" ry="10" width="760" height="42" fill="#eef6ff" stroke="#2563eb"/>
-<text x="82" y="357" font-family="Microsoft YaHei, Arial" font-size="17" fill="#111827">推荐服务</text>
-<line x1="440" y1="372" x2="440" y2="398" stroke="#6b7280" stroke-width="2"/>
-<rect x="60" y="400" rx="10" ry="10" width="760" height="42" fill="#eef6ff" stroke="#2563eb"/>
-<text x="82" y="427" font-family="Microsoft YaHei, Arial" font-size="17" fill="#111827">预约服务</text>
-<line x1="440" y1="442" x2="440" y2="468" stroke="#6b7280" stroke-width="2"/>
-<rect x="60" y="470" rx="10" ry="10" width="760" height="42" fill="#eef6ff" stroke="#2563eb"/>
-<text x="82" y="497" font-family="Microsoft YaHei, Arial" font-size="17" fill="#111827">通知服务</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1054" viewBox="0 0 1800 1054">
+<defs>
+<marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth"><path d="M2,2 L10,6 L2,10 z" fill="#173B2F"/></marker>
+<linearGradient id="head" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#F8FCFA"/><stop offset="100%" stop-color="#EAF6EF"/></linearGradient>
+</defs>
+<rect width="100%" height="100%" fill="#FBFDFB"/>
+<text x="900.0" y="54" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="40" font-weight="800" fill="#173B2F">跨服务调用顺序图</text>
+<text x="900.0" y="92" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="22" fill="#4B5563">顺序消息、返回与异常分支</text>
+<line x1="80" y1="118" x2="1720" y2="118" stroke="#177A3E" stroke-width="3"/>
+<rect x="15.0" y="160" width="170" height="54" rx="14" fill="#EAF6EF" stroke="#177A3E" stroke-width="2"/>
+<text x="100.0" y="187.0" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="19" font-weight="600" fill="#173B2F">
+<tspan x="100.0" dy="0">顾客端</tspan>
+</text>
+<line x1="100.0" y1="214" x2="100.0" y2="984" stroke="#A7CDB7" stroke-width="2" stroke-dasharray="8 8"/>
+<rect x="281.6666666666667" y="160" width="170" height="54" rx="14" fill="#EAF6EF" stroke="#177A3E" stroke-width="2"/>
+<text x="366.6666666666667" y="187.0" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="19" font-weight="600" fill="#173B2F">
+<tspan x="366.6666666666667" dy="0">API网关</tspan>
+</text>
+<line x1="366.6666666666667" y1="214" x2="366.6666666666667" y2="984" stroke="#A7CDB7" stroke-width="2" stroke-dasharray="8 8"/>
+<rect x="548.3333333333334" y="160" width="170" height="54" rx="14" fill="#EAF6EF" stroke="#177A3E" stroke-width="2"/>
+<text x="633.3333333333334" y="187.0" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="19" font-weight="600" fill="#173B2F">
+<tspan x="633.3333333333334" dy="0">预约服务</tspan>
+</text>
+<line x1="633.3333333333334" y1="214" x2="633.3333333333334" y2="984" stroke="#A7CDB7" stroke-width="2" stroke-dasharray="8 8"/>
+<rect x="815.0" y="160" width="170" height="54" rx="14" fill="#EAF6EF" stroke="#177A3E" stroke-width="2"/>
+<text x="900.0" y="187.0" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="19" font-weight="600" fill="#173B2F">
+<tspan x="900.0" dy="0">会员服务</tspan>
+</text>
+<line x1="900.0" y1="214" x2="900.0" y2="984" stroke="#A7CDB7" stroke-width="2" stroke-dasharray="8 8"/>
+<rect x="1081.6666666666667" y="160" width="170" height="54" rx="14" fill="#EAF6EF" stroke="#177A3E" stroke-width="2"/>
+<text x="1166.6666666666667" y="187.0" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="19" font-weight="600" fill="#173B2F">
+<tspan x="1166.6666666666667" dy="0">支付平台</tspan>
+</text>
+<line x1="1166.6666666666667" y1="214" x2="1166.6666666666667" y2="984" stroke="#A7CDB7" stroke-width="2" stroke-dasharray="8 8"/>
+<rect x="1348.3333333333335" y="160" width="170" height="54" rx="14" fill="#EAF6EF" stroke="#177A3E" stroke-width="2"/>
+<text x="1433.3333333333335" y="187.0" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="19" font-weight="600" fill="#173B2F">
+<tspan x="1433.3333333333335" dy="0">通知服务</tspan>
+</text>
+<line x1="1433.3333333333335" y1="214" x2="1433.3333333333335" y2="984" stroke="#A7CDB7" stroke-width="2" stroke-dasharray="8 8"/>
+<rect x="1615.0" y="160" width="170" height="54" rx="14" fill="#EAF6EF" stroke="#177A3E" stroke-width="2"/>
+<text x="1700.0" y="187.0" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="19" font-weight="600" fill="#173B2F">
+<tspan x="1700.0" dy="0">监控/日志</tspan>
+</text>
+<line x1="1700.0" y1="214" x2="1700.0" y2="984" stroke="#A7CDB7" stroke-width="2" stroke-dasharray="8 8"/>
+<line x1="100.0" y1="270" x2="366.6666666666667" y2="270" stroke="#173B2F" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="233.33333333333334" y="260" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="17" font-weight="400" fill="#111827">
+<tspan x="233.33333333333334" dy="0">提交预约请求(traceId)</tspan>
+</text>
+<line x1="366.6666666666667" y1="328" x2="1700.0" y2="328" stroke="#173B2F" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="1033.3333333333333" y="318" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="17" font-weight="400" fill="#111827">
+<tspan x="1033.3333333333333" dy="0">记录入口日志</tspan>
+</text>
+<line x1="366.6666666666667" y1="386" x2="633.3333333333334" y2="386" stroke="#173B2F" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="500.0" y="376" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="17" font-weight="400" fill="#111827">
+<tspan x="500.0" dy="0">转发预约参数</tspan>
+</text>
+<line x1="633.3333333333334" y1="444" x2="900.0" y2="444" stroke="#173B2F" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="766.6666666666667" y="434" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="17" font-weight="400" fill="#111827">
+<tspan x="766.6666666666667" dy="0">查询会员权益/授权</tspan>
+</text>
+<line x1="900.0" y1="502" x2="633.3333333333334" y2="502" stroke="#173B2F" stroke-width="2" stroke-dasharray="8 8" marker-end="url(#arrow)"/>
+<text x="766.6666666666667" y="492" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="17" font-weight="400" fill="#111827">
+<tspan x="766.6666666666667" dy="0">返回权益与限制</tspan>
+</text>
+<line x1="633.3333333333334" y1="560" x2="633.3333333333334" y2="560" stroke="#173B2F" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="633.3333333333334" y="550" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="17" font-weight="400" fill="#111827">
+<tspan x="633.3333333333334" dy="0">校验时段、人数、猫咪状态</tspan>
+</text>
+<line x1="633.3333333333334" y1="618" x2="633.3333333333334" y2="618" stroke="#173B2F" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="633.3333333333334" y="608" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="17" font-weight="400" fill="#111827">
+<tspan x="633.3333333333334" dy="0">锁定桌位并生成草稿</tspan>
+</text>
+<line x1="633.3333333333334" y1="676" x2="1166.6666666666667" y2="676" stroke="#173B2F" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="900.0" y="666" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="17" font-weight="400" fill="#111827">
+<tspan x="900.0" dy="0">创建订金支付</tspan>
+</text>
+<line x1="1166.6666666666667" y1="734" x2="633.3333333333334" y2="734" stroke="#173B2F" stroke-width="2" stroke-dasharray="8 8" marker-end="url(#arrow)"/>
+<text x="900.0" y="724" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="17" font-weight="400" fill="#111827">
+<tspan x="900.0" dy="0">异步支付回调</tspan>
+</text>
+<line x1="633.3333333333334" y1="792" x2="1700.0" y2="792" stroke="#173B2F" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="1166.6666666666667" y="782" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="17" font-weight="400" fill="#111827">
+<tspan x="1166.6666666666667" dy="0">记录状态变更</tspan>
+</text>
+<line x1="633.3333333333334" y1="850" x2="1433.3333333333335" y2="850" stroke="#173B2F" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="1033.3333333333335" y="840" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="17" font-weight="400" fill="#111827">
+<tspan x="1033.3333333333335" dy="0">发送确认/提醒</tspan>
+</text>
+<line x1="1433.3333333333335" y1="908" x2="1433.3333333333335" y2="908" stroke="#173B2F" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="1433.3333333333335" y="898" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="17" font-weight="400" fill="#111827">
+<tspan x="1433.3333333333335" dy="0">失败则进入补偿队列</tspan>
+</text>
+<line x1="1433.3333333333335" y1="966" x2="100.0" y2="966" stroke="#173B2F" stroke-width="2" stroke-dasharray="8 8" marker-end="url(#arrow)"/>
+<text x="766.6666666666667" y="956" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="17" font-weight="400" fill="#111827">
+<tspan x="766.6666666666667" dy="0">推送预约结果</tspan>
+</text>
 </svg>

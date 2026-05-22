@@ -1,47 +1,64 @@
 @startuml
 left to right direction
+skinparam backgroundColor #F6FBF8
 skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam defaultFontName Microsoft YaHei
+skinparam usecase {
+  BackgroundColor #FFFFFF
+  BorderColor #177A3E
+  FontColor #173B2F
+}
+skinparam actor {
+  BorderColor #173B2F
+  FontColor #173B2F
+}
 actor "顾客" as Customer
-actor "注册会员" as Member
+actor "会员" as Member
 actor "店员" as Staff
-actor "猫咪管家" as Keeper
+actor "猫咪管家" as CatKeeper
 actor "店长" as Manager
-actor "总部运营" as Ops
-actor "外部支付" as Pay
-actor "通知服务" as Notify
+actor "运营人员" as Ops
+actor "支付平台" as Payment
+actor "短信/消息服务" as Message
+actor "监管/审计接口" as Regulator
 Customer <|-- Member
-rectangle "NekoCafé 智慧餐饮预约平台" {
-  usecase "浏览门店" as UC01
-  usecase "管理会员资料" as UC02
-  usecase "创建桌位预约" as UC03
-  usecase "AI 推荐桌位/猫咪/菜品" as UC04
-  usecase "管理预约\n改期/取消/候补" as UC05
-  usecase "点单与支付" as UC06
-  usecase "到店核销" as UC07
-  usecase "桌位调度" as UC08
-  usecase "处理订单" as UC09
-  usecase "猫咪健康打卡" as UC10
-  usecase "运营看板" as UC11
-  usecase "活动投放" as UC12
-  usecase "发送通知" as UC13
+Staff <|-- CatKeeper
+Staff <|-- Manager
+rectangle "NekoCafé 预约平台" {
+  usecase "UC-01\n浏览门店与猫咪" as UC01
+  usecase "UC-02\n创建预约" as UC02
+  usecase "UC-03\n改签/取消/候补" as UC03
+  usecase "UC-04\n扫码点单与支付" as UC04
+  usecase "UC-05\n会员档案与权益" as UC05
+  usecase "UC-06\n个性化推荐" as UC06
+  usecase "UC-07\n到店核销" as UC07
+  usecase "UC-08\n店员订单处理" as UC08
+  usecase "UC-09\n猫咪档案与健康" as UC09
+  usecase "UC-10\n门店运营报表" as UC10
+  usecase "UC-11\n活动与优惠券" as UC11
+  usecase "UC-12\n通知/审计/工单闭环" as UC12
 }
 Customer --> UC01
 Member --> UC02
 Member --> UC03
+Member --> UC04
 Member --> UC05
 Member --> UC06
 Staff --> UC07
 Staff --> UC08
-Staff --> UC09
-Keeper --> UC10
-Manager --> UC11
+CatKeeper --> UC09
+Manager --> UC10
+Ops --> UC10
 Ops --> UC11
 Ops --> UC12
-Pay --> UC06
-Notify --> UC13
-UC03 ..> UC04 : <<include>>
-UC03 ..> UC13 : <<include>>
-UC05 ..> UC13 : <<include>>
-UC06 ..> UC13 : <<include>>
-UC10 ..> UC04 : <<extend>>
+Payment --> UC02
+Payment --> UC04
+Message --> UC12
+Regulator --> UC12
+UC02 ..> UC03 : <<extend>>
+UC02 ..> UC12 : <<include>>
+UC04 ..> UC12 : <<include>>
+UC06 ..> UC09 : <<include>>
+UC10 ..> UC12 : <<include>>
 @enduml

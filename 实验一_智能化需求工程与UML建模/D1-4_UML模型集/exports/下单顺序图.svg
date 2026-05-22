@@ -1,25 +1,80 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="630" viewBox="0 0 900 630">
-<rect width="100%" height="100%" fill="#ffffff"/>
-<text x="40" y="48" font-family="Microsoft YaHei, Arial" font-size="26" font-weight="700" fill="#1f2937">NekoCafé UML 导出预览</text>
-<text x="40" y="82" font-family="Microsoft YaHei, Arial" font-size="18" fill="#4b5563">下单顺序图.svg</text>
-<rect x="60" y="120" rx="10" ry="10" width="760" height="42" fill="#eef6ff" stroke="#2563eb"/>
-<text x="82" y="147" font-family="Microsoft YaHei, Arial" font-size="17" fill="#111827">会员</text>
-<line x1="440" y1="162" x2="440" y2="188" stroke="#6b7280" stroke-width="2"/>
-<rect x="60" y="190" rx="10" ry="10" width="760" height="42" fill="#eef6ff" stroke="#2563eb"/>
-<text x="82" y="217" font-family="Microsoft YaHei, Arial" font-size="17" fill="#111827">顾客端</text>
-<line x1="440" y1="232" x2="440" y2="258" stroke="#6b7280" stroke-width="2"/>
-<rect x="60" y="260" rx="10" ry="10" width="760" height="42" fill="#eef6ff" stroke="#2563eb"/>
-<text x="82" y="287" font-family="Microsoft YaHei, Arial" font-size="17" fill="#111827">预约服务</text>
-<line x1="440" y1="302" x2="440" y2="328" stroke="#6b7280" stroke-width="2"/>
-<rect x="60" y="330" rx="10" ry="10" width="760" height="42" fill="#eef6ff" stroke="#2563eb"/>
-<text x="82" y="357" font-family="Microsoft YaHei, Arial" font-size="17" fill="#111827">订单服务</text>
-<line x1="440" y1="372" x2="440" y2="398" stroke="#6b7280" stroke-width="2"/>
-<rect x="60" y="400" rx="10" ry="10" width="760" height="42" fill="#eef6ff" stroke="#2563eb"/>
-<text x="82" y="427" font-family="Microsoft YaHei, Arial" font-size="17" fill="#111827">优惠服务</text>
-<line x1="440" y1="442" x2="440" y2="468" stroke="#6b7280" stroke-width="2"/>
-<rect x="60" y="470" rx="10" ry="10" width="760" height="42" fill="#eef6ff" stroke="#2563eb"/>
-<text x="82" y="497" font-family="Microsoft YaHei, Arial" font-size="17" fill="#111827">支付网关</text>
-<line x1="440" y1="512" x2="440" y2="538" stroke="#6b7280" stroke-width="2"/>
-<rect x="60" y="540" rx="10" ry="10" width="760" height="42" fill="#eef6ff" stroke="#2563eb"/>
-<text x="82" y="567" font-family="Microsoft YaHei, Arial" font-size="17" fill="#111827">通知服务</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="880" viewBox="0 0 1800 880">
+<defs>
+<marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth"><path d="M2,2 L10,6 L2,10 z" fill="#173B2F"/></marker>
+<linearGradient id="head" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#F8FCFA"/><stop offset="100%" stop-color="#EAF6EF"/></linearGradient>
+</defs>
+<rect width="100%" height="100%" fill="#FBFDFB"/>
+<text x="900.0" y="54" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="40" font-weight="800" fill="#173B2F">下单顺序图</text>
+<text x="900.0" y="92" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="22" fill="#4B5563">顺序消息、返回与异常分支</text>
+<line x1="80" y1="118" x2="1720" y2="118" stroke="#177A3E" stroke-width="3"/>
+<rect x="15.0" y="160" width="170" height="54" rx="14" fill="#EAF6EF" stroke="#177A3E" stroke-width="2"/>
+<text x="100.0" y="187.0" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="19" font-weight="600" fill="#173B2F">
+<tspan x="100.0" dy="0">顾客</tspan>
+</text>
+<line x1="100.0" y1="214" x2="100.0" y2="810" stroke="#A7CDB7" stroke-width="2" stroke-dasharray="8 8"/>
+<rect x="335.0" y="160" width="170" height="54" rx="14" fill="#EAF6EF" stroke="#177A3E" stroke-width="2"/>
+<text x="420.0" y="187.0" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="19" font-weight="600" fill="#173B2F">
+<tspan x="420.0" dy="0">菜单页</tspan>
+</text>
+<line x1="420.0" y1="214" x2="420.0" y2="810" stroke="#A7CDB7" stroke-width="2" stroke-dasharray="8 8"/>
+<rect x="655.0" y="160" width="170" height="54" rx="14" fill="#EAF6EF" stroke="#177A3E" stroke-width="2"/>
+<text x="740.0" y="187.0" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="19" font-weight="600" fill="#173B2F">
+<tspan x="740.0" dy="0">订单服务</tspan>
+</text>
+<line x1="740.0" y1="214" x2="740.0" y2="810" stroke="#A7CDB7" stroke-width="2" stroke-dasharray="8 8"/>
+<rect x="975.0" y="160" width="170" height="54" rx="14" fill="#EAF6EF" stroke="#177A3E" stroke-width="2"/>
+<text x="1060.0" y="187.0" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="19" font-weight="600" fill="#173B2F">
+<tspan x="1060.0" dy="0">支付平台</tspan>
+</text>
+<line x1="1060.0" y1="214" x2="1060.0" y2="810" stroke="#A7CDB7" stroke-width="2" stroke-dasharray="8 8"/>
+<rect x="1295.0" y="160" width="170" height="54" rx="14" fill="#EAF6EF" stroke="#177A3E" stroke-width="2"/>
+<text x="1380.0" y="187.0" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="19" font-weight="600" fill="#173B2F">
+<tspan x="1380.0" dy="0">店员工作台</tspan>
+</text>
+<line x1="1380.0" y1="214" x2="1380.0" y2="810" stroke="#A7CDB7" stroke-width="2" stroke-dasharray="8 8"/>
+<rect x="1615.0" y="160" width="170" height="54" rx="14" fill="#EAF6EF" stroke="#177A3E" stroke-width="2"/>
+<text x="1700.0" y="187.0" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="19" font-weight="600" fill="#173B2F">
+<tspan x="1700.0" dy="0">通知服务</tspan>
+</text>
+<line x1="1700.0" y1="214" x2="1700.0" y2="810" stroke="#A7CDB7" stroke-width="2" stroke-dasharray="8 8"/>
+<line x1="100.0" y1="270" x2="420.0" y2="270" stroke="#173B2F" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="260.0" y="260" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="17" font-weight="400" fill="#111827">
+<tspan x="260.0" dy="0">扫码进入菜单</tspan>
+</text>
+<line x1="420.0" y1="328" x2="740.0" y2="328" stroke="#173B2F" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="580.0" y="318" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="17" font-weight="400" fill="#111827">
+<tspan x="580.0" dy="0">提交购物车与桌位/预约号</tspan>
+</text>
+<line x1="740.0" y1="386" x2="740.0" y2="386" stroke="#173B2F" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="740.0" y="376" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="17" font-weight="400" fill="#111827">
+<tspan x="740.0" dy="0">校验可售、过敏提示、重复提交</tspan>
+</text>
+<line x1="740.0" y1="444" x2="1060.0" y2="444" stroke="#173B2F" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="900.0" y="434" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="17" font-weight="400" fill="#111827">
+<tspan x="900.0" dy="0">创建支付单(amount, traceId)</tspan>
+</text>
+<line x1="1060.0" y1="502" x2="740.0" y2="502" stroke="#173B2F" stroke-width="2" stroke-dasharray="8 8" marker-end="url(#arrow)"/>
+<text x="900.0" y="492" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="17" font-weight="400" fill="#111827">
+<tspan x="900.0" dy="0">支付成功回调(tradeNo)</tspan>
+</text>
+<line x1="740.0" y1="560" x2="740.0" y2="560" stroke="#173B2F" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="740.0" y="550" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="17" font-weight="400" fill="#111827">
+<tspan x="740.0" dy="0">幂等确认订单状态</tspan>
+</text>
+<line x1="740.0" y1="618" x2="1380.0" y2="618" stroke="#173B2F" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="1060.0" y="608" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="17" font-weight="400" fill="#111827">
+<tspan x="1060.0" dy="0">推送待制作订单</tspan>
+</text>
+<line x1="1380.0" y1="676" x2="740.0" y2="676" stroke="#173B2F" stroke-width="2" stroke-dasharray="8 8" marker-end="url(#arrow)"/>
+<text x="1060.0" y="666" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="17" font-weight="400" fill="#111827">
+<tspan x="1060.0" dy="0">接单/制作/完成</tspan>
+</text>
+<line x1="740.0" y1="734" x2="1700.0" y2="734" stroke="#173B2F" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="1220.0" y="724" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="17" font-weight="400" fill="#111827">
+<tspan x="1220.0" dy="0">发送取餐或服务提醒</tspan>
+</text>
+<line x1="1700.0" y1="792" x2="100.0" y2="792" stroke="#173B2F" stroke-width="2" stroke-dasharray="8 8" marker-end="url(#arrow)"/>
+<text x="900.0" y="782" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="17" font-weight="400" fill="#111827">
+<tspan x="900.0" dy="0">通知顾客</tspan>
+</text>
 </svg>

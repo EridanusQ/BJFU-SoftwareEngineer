@@ -1,34 +1,117 @@
 @startuml
-skinparam classAttributeIconSize 0
-class Customer { +customerId; +name; +phone; +privacyConsent }
-class Member { +level; +points; +birthday; +preferenceTags }
-class Store { +storeId; +city; +address; +businessHours }
-class TableSlot { +tableId; +capacity; +areaType; +status }
-class Reservation { +reservationId; +timeSlot; +partySize; +status; +specialRequest }
-class Order { +orderId; +status; +totalAmount }
-class OrderItem { +quantity; +price }
-class MenuItem { +itemId; +name; +allergenTags; +price }
-class Payment { +paymentId; +channel; +amount; +status }
-class Coupon { +couponId; +rule; +validUntil }
-class CatProfile { +catId; +name; +temperament; +availableStatus }
-class HealthCheckIn { +checkInId; +appetite; +energy; +temperature; +remark }
-class Staff { +staffId; +role; +storeId }
-class Promotion { +promotionId; +targetSegment; +budget; +status }
-class AuditLog { +actorId; +action; +createdAt; +traceId }
-Customer <|-- Member
-Store "1" o-- "many" TableSlot
-Store "1" o-- "many" Staff
-Store "1" o-- "many" CatProfile
-Member "1" -- "many" Reservation
-Reservation "1" --> "1" TableSlot
-Reservation "0..1" --> "1" CatProfile
-Reservation "0..1" --> "1" Order
-Order "1" o-- "many" OrderItem
-OrderItem "many" --> "1" MenuItem
-Order "0..1" --> Payment
-Member "many" -- "many" Coupon
-CatProfile "1" o-- "many" HealthCheckIn
-Promotion "1" --> "many" Coupon
-AuditLog ..> Reservation
-AuditLog ..> Order
+skinparam backgroundColor #F6FBF8
+skinparam shadowing false
+skinparam defaultFontName Microsoft YaHei
+hide circle
+class Member {
+  +memberId: String
+  +mobile: String
+  +level: String
+  +points: int
+  +consentVersion: String
+}
+class Store {
+  +storeId: String
+  +name: String
+  +city: String
+  +openHours: String
+  +status: StoreStatus
+}
+class TableSlot {
+  +slotId: String
+  +capacity: int
+  +tableType: String
+  +lockUntil: DateTime
+  +status: SlotStatus
+}
+class CatProfile {
+  +catId: String
+  +nickname: String
+  +personality: String
+  +healthStatus: HealthStatus
+  +interactionRule: String
+}
+class Reservation {
+  +reservationId: String
+  +visitTime: DateTime
+  +partySize: int
+  +status: ReservationStatus
+  +traceId: String
+  +lock()
+  +cancel()
+}
+class Payment {
+  +paymentId: String
+  +channel: String
+  +amount: Money
+  +tradeNo: String
+  +status: PaymentStatus
+}
+class Order {
+  +orderId: String
+  +amount: Money
+  +status: OrderStatus
+  +pay()
+  +refund()
+}
+class OrderItem {
+  +itemId: String
+  +quantity: int
+  +unitPrice: Money
+}
+class MenuItem {
+  +menuItemId: String
+  +name: String
+  +allergenTags: String
+}
+class Coupon {
+  +couponId: String
+  +rule: String
+  +validTo: Date
+}
+class Campaign {
+  +campaignId: String
+  +audienceRule: String
+  +budget: Money
+}
+class HealthCheckIn {
+  +checkId: String
+  +appetite: String
+  +temperature: Decimal
+  +abnormalFlag: Boolean
+}
+class Notification {
+  +messageId: String
+  +channel: String
+  +retryCount: int
+  +status: MessageStatus
+}
+class AuditLog {
+  +actorId: String
+  +action: String
+  +targetId: String
+  +traceId: String
+}
+class Review
+class ReviewWorkOrder
+class TraceLog
+class ConsentRecord
+Store "1" o-- "1..*" TableSlot
+Store "1" o-- "0..*" CatProfile
+Member "1" -- "0..*" Reservation
+Reservation "*" -- "1" Store
+Reservation "*" -- "1" TableSlot
+Reservation "0..1" -- "1" Payment
+Reservation "0..*" -- "0..*" CatProfile : 可互动推荐
+Order "0..1" -- "0..1" Reservation
+Order "1" o-- "1..*" OrderItem
+OrderItem "*" -- "1" MenuItem
+Order "0..1" -- "1" Payment
+Member "1" -- "0..*" Coupon
+Campaign "1" -- "0..*" Coupon
+CatProfile "1" -- "0..*" HealthCheckIn
+Notification "*" -- "1" Member
+ReviewWorkOrder "*" -- "1" Review
+AuditLog "*" -- "1" TraceLog
+Member "1" -- "0..*" ConsentRecord
 @enduml

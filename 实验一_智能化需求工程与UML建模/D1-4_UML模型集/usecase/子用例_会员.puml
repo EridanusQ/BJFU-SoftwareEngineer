@@ -1,24 +1,37 @@
 @startuml
 left to right direction
-actor "顾客" as Customer
-actor "注册会员" as Member
-Customer <|-- Member
-rectangle "会员与偏好子系统" {
-  usecase "注册/登录" as U1
-  usecase "维护个人资料" as U2
-  usecase "维护猫咪/菜品偏好" as U3
-  usecase "管理隐私授权" as U4
-  usecase "查看积分与优惠券" as U5
-  usecase "领取活动券" as U6
-  usecase "评价门店体验" as U7
+skinparam backgroundColor #F6FBF8
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam defaultFontName Microsoft YaHei
+actor "会员" as Member
+actor "运营人员" as Ops
+actor "短信/消息服务" as Message
+rectangle "会员子系统" {
+  usecase "UC-05.1\n手机号/微信登录绑定" as Login
+  usecase "UC-05.2\n维护会员档案与偏好" as Profile
+  usecase "UC-05.3\n查看等级权益" as Level
+  usecase "UC-05.4\n积分流水与兑换" as Points
+  usecase "UC-05.5\n优惠券校验使用" as Coupon
+  usecase "UC-05.6\n评价历史与复购" as Review
+  usecase "UC-05.7\n隐私授权管理" as Consent
+  usecase "UC-06\n个性化推荐" as Recommend
+  usecase "UC-12.3\n差评工单触发" as Ticket
 }
-Customer --> U1
-Member --> U2
-Member --> U3
-Member --> U4
-Member --> U5
-Member --> U6
-Member --> U7
-U3 ..> U4 : <<include>>
-U6 ..> U5 : <<extend>>
+Member --> Login
+Member --> Profile
+Member --> Level
+Member --> Points
+Member --> Coupon
+Member --> Review
+Member --> Consent
+Member --> Recommend
+Ops --> Level
+Ops --> Coupon
+Ops --> Ticket
+Message --> Login
+Profile ..> Consent : <<include>>
+Recommend ..> Profile : <<include>>
+Coupon ..> Level : <<include>>
+Review ..> Ticket : <<extend>>
 @enduml

@@ -1,19 +1,92 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="490" viewBox="0 0 900 490">
-<rect width="100%" height="100%" fill="#ffffff"/>
-<text x="40" y="48" font-family="Microsoft YaHei, Arial" font-size="26" font-weight="700" fill="#1f2937">NekoCafé UML 导出预览</text>
-<text x="40" y="82" font-family="Microsoft YaHei, Arial" font-size="18" fill="#4b5563">桌位预约活动图.svg</text>
-<rect x="60" y="120" rx="10" ry="10" width="760" height="42" fill="#eef6ff" stroke="#2563eb"/>
-<text x="82" y="147" font-family="Microsoft YaHei, Arial" font-size="17" fill="#111827">筛选门店</text>
-<line x1="440" y1="162" x2="440" y2="188" stroke="#6b7280" stroke-width="2"/>
-<rect x="60" y="190" rx="10" ry="10" width="760" height="42" fill="#eef6ff" stroke="#2563eb"/>
-<text x="82" y="217" font-family="Microsoft YaHei, Arial" font-size="17" fill="#111827">判断可预约</text>
-<line x1="440" y1="232" x2="440" y2="258" stroke="#6b7280" stroke-width="2"/>
-<rect x="60" y="260" rx="10" ry="10" width="760" height="42" fill="#eef6ff" stroke="#2563eb"/>
-<text x="82" y="287" font-family="Microsoft YaHei, Arial" font-size="17" fill="#111827">生成预约</text>
-<line x1="440" y1="302" x2="440" y2="328" stroke="#6b7280" stroke-width="2"/>
-<rect x="60" y="330" rx="10" ry="10" width="760" height="42" fill="#eef6ff" stroke="#2563eb"/>
-<text x="82" y="357" font-family="Microsoft YaHei, Arial" font-size="17" fill="#111827">满座候补</text>
-<line x1="440" y1="372" x2="440" y2="398" stroke="#6b7280" stroke-width="2"/>
-<rect x="60" y="400" rx="10" ry="10" width="760" height="42" fill="#eef6ff" stroke="#2563eb"/>
-<text x="82" y="427" font-family="Microsoft YaHei, Arial" font-size="17" fill="#111827">发送通知</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000">
+<defs>
+<marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth"><path d="M2,2 L10,6 L2,10 z" fill="#173B2F"/></marker>
+<linearGradient id="head" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#F8FCFA"/><stop offset="100%" stop-color="#EAF6EF"/></linearGradient>
+</defs>
+<rect width="100%" height="100%" fill="#FBFDFB"/>
+<text x="800.0" y="54" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="40" font-weight="800" fill="#173B2F">桌位预约活动图</text>
+<text x="800.0" y="92" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="22" fill="#4B5563">活动流、异常分支与验证节点</text>
+<line x1="80" y1="118" x2="1520" y2="118" stroke="#177A3E" stroke-width="3"/>
+<rect x="80" y="150" width="320" height="760" rx="10" fill="#F8FCFA" stroke="#C7E3D2" stroke-width="2"/>
+<rect x="80" y="150" width="320" height="56" rx="10" fill="#EAF6EF" stroke="#7DB79A" stroke-width="2"/>
+<text x="240.0" y="178.0" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="22" font-weight="600" fill="#173B2F">
+<tspan x="240.0" dy="0">顾客/前台</tspan>
+</text>
+<rect x="430" y="150" width="320" height="760" rx="10" fill="#F8FCFA" stroke="#C7E3D2" stroke-width="2"/>
+<rect x="430" y="150" width="320" height="56" rx="10" fill="#EAF6EF" stroke="#7DB79A" stroke-width="2"/>
+<text x="590.0" y="178.0" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="22" font-weight="600" fill="#173B2F">
+<tspan x="590.0" dy="0">系统服务</tspan>
+</text>
+<rect x="780" y="150" width="320" height="760" rx="10" fill="#F8FCFA" stroke="#C7E3D2" stroke-width="2"/>
+<rect x="780" y="150" width="320" height="56" rx="10" fill="#EAF6EF" stroke="#7DB79A" stroke-width="2"/>
+<text x="940.0" y="178.0" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="22" font-weight="600" fill="#173B2F">
+<tspan x="940.0" dy="0">外部服务</tspan>
+</text>
+<rect x="1130" y="150" width="320" height="760" rx="10" fill="#F8FCFA" stroke="#C7E3D2" stroke-width="2"/>
+<rect x="1130" y="150" width="320" height="56" rx="10" fill="#EAF6EF" stroke="#7DB79A" stroke-width="2"/>
+<text x="1290.0" y="178.0" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="22" font-weight="600" fill="#173B2F">
+<tspan x="1290.0" dy="0">门店角色</tspan>
+</text>
+<rect x="115" y="250" width="250" height="72" rx="16" fill="#FFFFFF" stroke="#177A3E" stroke-width="2"/>
+<text x="240.0" y="286.0" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="19" font-weight="600" fill="#173B2F">
+<tspan x="240.0" dy="0">选择门店/时段/桌型</tspan>
+</text>
+<rect x="115" y="370" width="250" height="72" rx="16" fill="#FFFFFF" stroke="#177A3E" stroke-width="2"/>
+<text x="240.0" y="406.0" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="19" font-weight="600" fill="#173B2F">
+<tspan x="240.0" dy="0">查看猫咪出勤</tspan>
+</text>
+<rect x="465" y="250" width="250" height="72" rx="16" fill="#FFFFFF" stroke="#177A3E" stroke-width="2"/>
+<text x="590.0" y="286.0" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="19" font-weight="600" fill="#173B2F">
+<tspan x="590.0" dy="0">查询库存</tspan>
+</text>
+<polygon points="715,390.0 820.0,435 715,480.0 610.0,435" fill="#FFFFFF" stroke="#177A3E" stroke-width="2"/>
+<text x="715" y="427" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="18" font-weight="600" fill="#111827">
+<tspan x="715" dy="0">可用?</tspan>
+</text>
+<rect x="465" y="540" width="250" height="72" rx="16" fill="#FFFFFF" stroke="#177A3E" stroke-width="2"/>
+<text x="590.0" y="576.0" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="19" font-weight="600" fill="#173B2F">
+<tspan x="590.0" dy="0">锁定桌位15分钟</tspan>
+</text>
+<rect x="815" y="540" width="250" height="72" rx="16" fill="#FFFFFF" stroke="#177A3E" stroke-width="2"/>
+<text x="940.0" y="576.0" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="19" font-weight="600" fill="#173B2F">
+<tspan x="940.0" dy="0">创建订金支付</tspan>
+</text>
+<polygon points="1065,690.0 1170.0,735 1065,780.0 960.0,735" fill="#FFFFFF" stroke="#177A3E" stroke-width="2"/>
+<text x="1065" y="727" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="18" font-weight="600" fill="#111827">
+<tspan x="1065" dy="0">支付成功?</tspan>
+</text>
+<rect x="465" y="790" width="250" height="72" rx="16" fill="#FFFFFF" stroke="#177A3E" stroke-width="2"/>
+<text x="590.0" y="819.92" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="19" font-weight="600" fill="#173B2F">
+<tspan x="590.0" dy="0">确认预约写Trace I</tspan>
+<tspan x="590.0" dy="23.75">D</tspan>
+</text>
+<rect x="815" y="790" width="250" height="72" rx="16" fill="#FFFFFF" stroke="#177A3E" stroke-width="2"/>
+<text x="940.0" y="826.0" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="19" font-weight="600" fill="#173B2F">
+<tspan x="940.0" dy="0">发送提醒/补偿</tspan>
+</text>
+<rect x="1165" y="790" width="250" height="72" rx="16" fill="#FFFFFF" stroke="#177A3E" stroke-width="2"/>
+<text x="1290.0" y="826.0" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="19" font-weight="600" fill="#173B2F">
+<tspan x="1290.0" dy="0">到店核销</tspan>
+</text>
+<rect x="115" y="650" width="250" height="72" rx="16" fill="#FFFFFF" stroke="#177A3E" stroke-width="2"/>
+<text x="240.0" y="686.0" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="19" font-weight="600" fill="#173B2F">
+<tspan x="240.0" dy="0">候补或换时段</tspan>
+</text>
+<line x1="240" y1="286" x2="240" y2="406" stroke="#173B2F" stroke-width="2" marker-end="url(#arrow)"/>
+<line x1="240" y1="406" x2="590" y2="286" stroke="#173B2F" stroke-width="2" marker-end="url(#arrow)"/>
+<line x1="590" y1="286" x2="715" y2="435" stroke="#173B2F" stroke-width="2" marker-end="url(#arrow)"/>
+<line x1="715" y1="435" x2="590" y2="576" stroke="#173B2F" stroke-width="2" marker-end="url(#arrow)"/>
+<line x1="590" y1="576" x2="940" y2="576" stroke="#173B2F" stroke-width="2" marker-end="url(#arrow)"/>
+<line x1="940" y1="576" x2="1065" y2="735" stroke="#173B2F" stroke-width="2" marker-end="url(#arrow)"/>
+<line x1="1065" y1="735" x2="590" y2="826" stroke="#173B2F" stroke-width="2" marker-end="url(#arrow)"/>
+<line x1="590" y1="826" x2="940" y2="826" stroke="#173B2F" stroke-width="2" marker-end="url(#arrow)"/>
+<line x1="940" y1="826" x2="1290" y2="826" stroke="#173B2F" stroke-width="2" marker-end="url(#arrow)"/>
+<line x1="715" y1="435" x2="240" y2="686" stroke="#173B2F" stroke-width="2" marker-end="url(#arrow)"/>
+<line x1="1065" y1="735" x2="240" y2="686" stroke="#173B2F" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="700" y="390" text-anchor="start" font-family="Microsoft YaHei, Arial" font-size="18" font-weight="400" fill="#475569">
+<tspan x="700" dy="0">否：满座</tspan>
+</text>
+<text x="1050" y="690" text-anchor="start" font-family="Microsoft YaHei, Arial" font-size="18" font-weight="400" fill="#475569">
+<tspan x="1050" dy="0">否：超时/失败</tspan>
+</text>
 </svg>

@@ -1,26 +1,38 @@
 @startuml
 left to right direction
-actor "注册会员" as Member
+skinparam backgroundColor #F6FBF8
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam defaultFontName Microsoft YaHei
+actor "顾客/会员" as Customer
 actor "店员" as Staff
+actor "支付平台" as Payment
+actor "短信/消息服务" as Message
 rectangle "预约子系统" {
-  usecase "选择城市/门店" as U1
-  usecase "查看桌位与猫咪状态" as U2
-  usecase "填写人数与特殊需求" as U3
-  usecase "提交预约" as U4
-  usecase "候补登记" as U5
-  usecase "改期/取消" as U6
-  usecase "到店核销" as U7
-  usecase "发送预约通知" as U8
+  usecase "UC-01\n查询门店/时段/桌型" as Search
+  usecase "UC-02.1\n查看猫咪出勤与互动限制" as CatSchedule
+  usecase "UC-02.2\n创建预约" as Create
+  usecase "UC-02.3\n锁定桌位库存" as Lock
+  usecase "UC-02.4\n订金支付" as Deposit
+  usecase "UC-03.1\n改签/取消/退款" as Change
+  usecase "UC-03.2\n候补登记" as Waitlist
+  usecase "UC-07\n到店核销与迟到处理" as CheckIn
+  usecase "UC-12.1\n预约通知提醒" as Notify
 }
-Member --> U1
-Member --> U2
-Member --> U3
-Member --> U4
-Member --> U5
-Member --> U6
-Staff --> U7
-U4 ..> U2 : <<include>>
-U4 ..> U8 : <<include>>
-U5 ..> U8 : <<include>>
-U6 ..> U8 : <<include>>
+Customer --> Search
+Customer --> CatSchedule
+Customer --> Create
+Customer --> Change
+Customer --> Waitlist
+Staff --> CheckIn
+Payment --> Deposit
+Message --> Notify
+Create ..> Search : <<include>>
+Create ..> CatSchedule : <<include>>
+Create ..> Lock : <<include>>
+Create ..> Deposit : <<include>>
+Create ..> Notify : <<include>>
+Search ..> Waitlist : <<extend>>\n满座
+Create ..> Change : <<extend>>\n规则允许
+CheckIn ..> Notify : <<include>>
 @enduml

@@ -1,20 +1,25 @@
 @startuml
-actor "会员" as Member
-participant "顾客端" as App
-participant "预约服务" as Reservation
-participant "菜单/订单服务" as Order
-participant "优惠服务" as Coupon
-participant "支付网关" as Pay
-participant "通知服务" as Notify
-Member -> App: 选择预约并提交菜品
-App -> Reservation: 校验预约状态
-Reservation --> App: 已确认/可点单
-App -> Order: 创建订单
-Order -> Coupon: 校验优惠券
-Coupon --> Order: 返回优惠金额
-Order -> Pay: 发起支付
-Pay --> Order: 支付成功
-Order -> Reservation: 绑定订单
-Order -> Notify: 发送下单成功通知
-Notify --> Member: 小程序/短信提醒
+skinparam backgroundColor #F6FBF8
+skinparam shadowing false
+skinparam defaultFontName Microsoft YaHei
+actor 顾客
+participant "菜单页" as Menu
+participant "订单服务" as OrderSvc
+participant "支付平台" as Pay
+participant "店员工作台" as StaffApp
+participant "通知服务" as Msg
+顾客 -> Menu: 扫码进入菜单
+Menu -> OrderSvc: 提交购物车与桌位/预约号
+OrderSvc -> OrderSvc: 校验菜单可售、过敏提示、重复提交
+alt 校验通过
+  OrderSvc -> Pay: 创建支付单(amount, traceId)
+  Pay --> OrderSvc: 支付成功回调(tradeNo)
+  OrderSvc -> OrderSvc: 幂等确认订单状态
+  OrderSvc -> StaffApp: 推送待制作订单
+  StaffApp --> OrderSvc: 接单/制作/完成
+  OrderSvc -> Msg: 发送取餐或服务提醒
+  Msg --> 顾客: 到店服务/取餐通知
+else 售罄或支付失败
+  OrderSvc --> Menu: 返回失败原因与可替代菜品
+end
 @enduml

@@ -1,19 +1,89 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="490" viewBox="0 0 900 490">
-<rect width="100%" height="100%" fill="#ffffff"/>
-<text x="40" y="48" font-family="Microsoft YaHei, Arial" font-size="26" font-weight="700" fill="#1f2937">NekoCafé UML 导出预览</text>
-<text x="40" y="82" font-family="Microsoft YaHei, Arial" font-size="18" fill="#4b5563">子用例_预约.svg</text>
-<rect x="60" y="120" rx="10" ry="10" width="760" height="42" fill="#eef6ff" stroke="#2563eb"/>
-<text x="82" y="147" font-family="Microsoft YaHei, Arial" font-size="17" fill="#111827">选择门店</text>
-<line x1="440" y1="162" x2="440" y2="188" stroke="#6b7280" stroke-width="2"/>
-<rect x="60" y="190" rx="10" ry="10" width="760" height="42" fill="#eef6ff" stroke="#2563eb"/>
-<text x="82" y="217" font-family="Microsoft YaHei, Arial" font-size="17" fill="#111827">查看桌位与猫咪状态</text>
-<line x1="440" y1="232" x2="440" y2="258" stroke="#6b7280" stroke-width="2"/>
-<rect x="60" y="260" rx="10" ry="10" width="760" height="42" fill="#eef6ff" stroke="#2563eb"/>
-<text x="82" y="287" font-family="Microsoft YaHei, Arial" font-size="17" fill="#111827">提交预约</text>
-<line x1="440" y1="302" x2="440" y2="328" stroke="#6b7280" stroke-width="2"/>
-<rect x="60" y="330" rx="10" ry="10" width="760" height="42" fill="#eef6ff" stroke="#2563eb"/>
-<text x="82" y="357" font-family="Microsoft YaHei, Arial" font-size="17" fill="#111827">候补/改期/取消</text>
-<line x1="440" y1="372" x2="440" y2="398" stroke="#6b7280" stroke-width="2"/>
-<rect x="60" y="400" rx="10" ry="10" width="760" height="42" fill="#eef6ff" stroke="#2563eb"/>
-<text x="82" y="427" font-family="Microsoft YaHei, Arial" font-size="17" fill="#111827">到店核销</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="900" viewBox="0 0 1500 900">
+<defs>
+<marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth"><path d="M2,2 L10,6 L2,10 z" fill="#173B2F"/></marker>
+<linearGradient id="head" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#F8FCFA"/><stop offset="100%" stop-color="#EAF6EF"/></linearGradient>
+</defs>
+<rect width="100%" height="100%" fill="#FBFDFB"/>
+<text x="750.0" y="54" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="40" font-weight="800" fill="#173B2F">预约子用例图</text>
+<text x="750.0" y="92" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="22" fill="#4B5563">查询、锁桌、订金、候补、改签与核销</text>
+<line x1="80" y1="118" x2="1420" y2="118" stroke="#177A3E" stroke-width="3"/>
+<rect x="300" y="170" width="900" height="570" rx="24" fill="#F8FCFA" stroke="#7DB79A" stroke-width="2"/>
+<text x="750.0" y="455.0" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="28" font-weight="600" fill="#173B2F">
+<tspan x="750.0" dy="0">子系统边界</tspan>
+</text>
+<circle cx="120" cy="360" r="20" fill="#FFFFFF" stroke="#173B2F" stroke-width="3"/>
+<line x1="120" y1="380" x2="120" y2="446" stroke="#173B2F" stroke-width="3"/>
+<line x1="78" y1="406" x2="162" y2="406" stroke="#173B2F" stroke-width="3"/>
+<line x1="120" y1="446" x2="78" y2="502" stroke="#173B2F" stroke-width="3"/>
+<line x1="120" y1="446" x2="162" y2="502" stroke="#173B2F" stroke-width="3"/>
+<text x="120" y="538" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="22" font-weight="700" fill="#111827">
+<tspan x="120" dy="0">顾客/会员</tspan>
+</text>
+<circle cx="1380" cy="360" r="20" fill="#FFFFFF" stroke="#173B2F" stroke-width="3"/>
+<line x1="1380" y1="380" x2="1380" y2="446" stroke="#173B2F" stroke-width="3"/>
+<line x1="1338" y1="406" x2="1422" y2="406" stroke="#173B2F" stroke-width="3"/>
+<line x1="1380" y1="446" x2="1338" y2="502" stroke="#173B2F" stroke-width="3"/>
+<line x1="1380" y1="446" x2="1422" y2="502" stroke="#173B2F" stroke-width="3"/>
+<text x="1380" y="538" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="22" font-weight="700" fill="#111827">
+<tspan x="1380" dy="0">店员/外部</tspan>
+<tspan x="1380" dy="27.5">服务</tspan>
+</text>
+<ellipse cx="500.0" cy="265.0" rx="120.0" ry="45.0" fill="#FFFFFF" stroke="#177A3E" stroke-width="2"/>
+<text x="500.0" y="257.86" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="21" font-weight="600" fill="#111827">
+<tspan x="500.0" dy="0">UC-01</tspan>
+<tspan x="500.0" dy="26.25">查询门店/时段</tspan>
+</text>
+<ellipse cx="790.0" cy="265.0" rx="120.0" ry="45.0" fill="#FFFFFF" stroke="#177A3E" stroke-width="2"/>
+<text x="790.0" y="257.86" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="21" font-weight="600" fill="#111827">
+<tspan x="790.0" dy="0">UC-02.1</tspan>
+<tspan x="790.0" dy="26.25">猫咪出勤</tspan>
+</text>
+<ellipse cx="1080.0" cy="265.0" rx="120.0" ry="45.0" fill="#FFFFFF" stroke="#177A3E" stroke-width="2"/>
+<text x="1080.0" y="257.86" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="21" font-weight="600" fill="#111827">
+<tspan x="1080.0" dy="0">UC-02.2</tspan>
+<tspan x="1080.0" dy="26.25">创建预约</tspan>
+</text>
+<ellipse cx="500.0" cy="465.0" rx="120.0" ry="45.0" fill="#FFFFFF" stroke="#177A3E" stroke-width="2"/>
+<text x="500.0" y="457.86" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="21" font-weight="600" fill="#111827">
+<tspan x="500.0" dy="0">UC-02.3</tspan>
+<tspan x="500.0" dy="26.25">锁定桌位</tspan>
+</text>
+<ellipse cx="790.0" cy="465.0" rx="120.0" ry="45.0" fill="#FFFFFF" stroke="#177A3E" stroke-width="2"/>
+<text x="790.0" y="457.86" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="21" font-weight="600" fill="#111827">
+<tspan x="790.0" dy="0">UC-02.4</tspan>
+<tspan x="790.0" dy="26.25">订金支付</tspan>
+</text>
+<ellipse cx="1080.0" cy="465.0" rx="120.0" ry="45.0" fill="#FFFFFF" stroke="#177A3E" stroke-width="2"/>
+<text x="1080.0" y="457.86" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="21" font-weight="600" fill="#111827">
+<tspan x="1080.0" dy="0">UC-03.1</tspan>
+<tspan x="1080.0" dy="26.25">改签/取消/退款</tspan>
+</text>
+<ellipse cx="640.0" cy="665.0" rx="120.0" ry="45.0" fill="#FFFFFF" stroke="#177A3E" stroke-width="2"/>
+<text x="640.0" y="657.86" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="21" font-weight="600" fill="#111827">
+<tspan x="640.0" dy="0">UC-03.2</tspan>
+<tspan x="640.0" dy="26.25">候补登记</tspan>
+</text>
+<ellipse cx="930.0" cy="665.0" rx="120.0" ry="45.0" fill="#FFFFFF" stroke="#177A3E" stroke-width="2"/>
+<text x="930.0" y="657.86" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="21" font-weight="600" fill="#111827">
+<tspan x="930.0" dy="0">UC-07</tspan>
+<tspan x="930.0" dy="26.25">到店核销</tspan>
+</text>
+<ellipse cx="1080.0" cy="665.0" rx="120.0" ry="45.0" fill="#FFFFFF" stroke="#177A3E" stroke-width="2"/>
+<text x="1080.0" y="657.86" text-anchor="middle" font-family="Microsoft YaHei, Arial" font-size="21" font-weight="600" fill="#111827">
+<tspan x="1080.0" dy="0">UC-12.1</tspan>
+<tspan x="1080.0" dy="26.25">预约提醒</tspan>
+</text>
+<line x1="190" y1="430" x2="380" y2="265" stroke="#334155" stroke-width="2"/>
+<line x1="190" y1="430" x2="670" y2="265" stroke="#334155" stroke-width="2"/>
+<line x1="190" y1="430" x2="960" y2="265" stroke="#334155" stroke-width="2"/>
+<line x1="190" y1="430" x2="380" y2="465" stroke="#334155" stroke-width="2"/>
+<line x1="1310" y1="430" x2="620" y2="465" stroke="#334155" stroke-width="2"/>
+<line x1="1310" y1="430" x2="910" y2="465" stroke="#334155" stroke-width="2"/>
+<line x1="1310" y1="430" x2="1200" y2="465" stroke="#334155" stroke-width="2"/>
+<line x1="1310" y1="430" x2="760" y2="665" stroke="#334155" stroke-width="2"/>
+<line x1="1310" y1="430" x2="1050" y2="665" stroke="#334155" stroke-width="2"/>
+<line x1="1310" y1="430" x2="1200" y2="665" stroke="#334155" stroke-width="2"/>
+<line x1="790" y1="265" x2="640" y2="665" stroke="#173B2F" stroke-width="2" stroke-dasharray="8 8" marker-end="url(#arrow)"/>
+<line x1="1080" y1="465" x2="1080" y2="665" stroke="#173B2F" stroke-width="2" stroke-dasharray="8 8" marker-end="url(#arrow)"/>
+<line x1="790" y1="465" x2="500" y2="465" stroke="#173B2F" stroke-width="2" stroke-dasharray="8 8" marker-end="url(#arrow)"/>
 </svg>
