@@ -49,19 +49,12 @@
 <polyline points="437.0,391.0 520.0,391.0 520.0,331.0" fill="none" stroke="#305B49" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
 <polyline points="666.0,362.0 666.0,410.0" fill="none" stroke="#305B49" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
 <polyline points="666.0,500.0 666.0,610.0" fill="none" stroke="#305B49" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
-<text x="706.0" y="557.0" text-anchor="middle" font-family="Microsoft YaHei, SimHei, Arial" font-size="18" font-weight="700" fill="#14733E">否</text>
+<text x="725.0" y="557.0" text-anchor="middle" font-family="Microsoft YaHei, SimHei, Arial" font-size="18" font-weight="700" fill="#14733E">否</text>
 <polyline points="606.0,455.0 440.0,455.0 440.0,750.0 520.0,750.0" fill="none" stroke="#305B49" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
-<text x="452.0" y="508.5" text-anchor="middle" font-family="Microsoft YaHei, SimHei, Arial" font-size="17" font-weight="400" fill="#577268">是/需休息</text>
+<text x="452.0" y="475.5" text-anchor="middle" font-family="Microsoft YaHei, SimHei, Arial" font-size="17" font-weight="400" fill="#577268">是/需休息</text>
 <polyline points="812.0,781.0 895.0,781.0" fill="none" stroke="#305B49" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
 <polyline points="1187.0,781.0 1270.0,781.0" fill="none" stroke="#305B49" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
 <polyline points="1416.0,750.0 1416.0,587.0" fill="none" stroke="#305B49" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
 <polyline points="1270.0,556.0 1170.0,556.0 1170.0,641.0 812.0,641.0" fill="none" stroke="#305B49" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
-<text x="1045.0" y="633.5" text-anchor="middle" font-family="Microsoft YaHei, SimHei, Arial" font-size="17" font-weight="400" fill="#577268">复核通过</text>
-
-<!-- activity-label-overlays-start -->
-<rect x="402.1" y="485.5" width="99.9" height="29.0" rx="5" fill="#FBFDFB" stroke="none"/>
-<text x="452.0" y="508.5" text-anchor="middle" font-family="Microsoft YaHei, SimHei, Arial" font-size="17" font-weight="400" fill="#577268">是/需休息</text>
-<rect x="1000.0" y="610.5" width="90.0" height="29.0" rx="5" fill="#FBFDFB" stroke="none"/>
-<text x="1045.0" y="633.5" text-anchor="middle" font-family="Microsoft YaHei, SimHei, Arial" font-size="17" font-weight="400" fill="#577268">复核通过</text>
-<!-- activity-label-overlays-end -->
+<text x="1045.0" y="595.5" text-anchor="middle" font-family="Microsoft YaHei, SimHei, Arial" font-size="17" font-weight="400" fill="#577268">复核通过</text>
 </svg>

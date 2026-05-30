@@ -46,10 +46,10 @@
 <polyline points="915.0,500.0 985.0,500.0" fill="none" stroke="#305B49" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
 <polyline points="800.0,537.0 800.0,663.0" fill="none" stroke="#305B49" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
 <polyline points="1100.0,332.0 1100.0,405.0 500.0,405.0 500.0,463.0" fill="none" stroke="#14733E" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="6 7" marker-end="url(#arrowGreen)"/>
-<text x="800.0" y="398.0" text-anchor="middle" font-family="Microsoft YaHei, SimHei, Arial" font-size="16" font-weight="400" fill="#14733E">&lt;&lt;include&gt;&gt;</text>
+<text x="800.0" y="376.0" text-anchor="middle" font-family="Microsoft YaHei, SimHei, Arial" font-size="16" font-weight="400" fill="#14733E">&lt;&lt;include&gt;&gt;</text>
 <polyline points="500.0,537.0 500.0,663.0" fill="none" stroke="#305B49" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
 <polyline points="1100.0,663.0 1100.0,560.0" fill="none" stroke="#14733E" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="6 7" marker-end="url(#arrowGreen)"/>
-<text x="1060.0" y="618.0" text-anchor="middle" font-family="Microsoft YaHei, SimHei, Arial" font-size="16" font-weight="400" fill="#14733E">&lt;&lt;extend&gt;&gt;</text>
+<text x="1030.0" y="615.0" text-anchor="middle" font-family="Microsoft YaHei, SimHei, Arial" font-size="16" font-weight="400" fill="#14733E">&lt;&lt;extend&gt;&gt;</text>
 <ellipse cx="130.0" cy="412.0" rx="16.0" ry="16.0" fill="#FBFDFB" stroke="#305B49" stroke-width="3"/>
 <polyline points="130.0,428.0 130.0,484.0" fill="none" stroke="#305B49" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
 <polyline points="96.0,448.0 164.0,448.0" fill="none" stroke="#305B49" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
@@ -68,11 +68,4 @@
 <polyline points="1390.0,603.0 1350.0,603.0 1350.0,500.0 1215.0,500.0" fill="none" stroke="#305B49" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
 <polyline points="1350.0,603.0 1350.0,700.0 1215.0,700.0" fill="none" stroke="#305B49" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
 <text x="800.0" y="853.0" text-anchor="middle" font-family="Microsoft YaHei, SimHei, Arial" font-size="16" font-weight="400" fill="#577268">说明：预约主流程按“查询-创建-锁桌-支付-核销”展开；取消、候补与提醒作为异常和支撑用例补充。</text>
-
-<!-- label-overlays-start -->
-<rect x="738.0" y="376.0" width="124.1" height="28.0" rx="5" fill="#FBFDFB" stroke="none"/>
-<text x="800.0" y="398.0" text-anchor="middle" font-family="Microsoft YaHei, SimHei, Arial" font-size="16" font-weight="400" fill="#14733E">&lt;&lt;include&gt;&gt;</text>
-<rect x="1002.6" y="596.0" width="114.8" height="28.0" rx="5" fill="#FBFDFB" stroke="none"/>
-<text x="1060.0" y="618.0" text-anchor="middle" font-family="Microsoft YaHei, SimHei, Arial" font-size="16" font-weight="400" fill="#14733E">&lt;&lt;extend&gt;&gt;</text>
-<!-- label-overlays-end -->
 </svg>
