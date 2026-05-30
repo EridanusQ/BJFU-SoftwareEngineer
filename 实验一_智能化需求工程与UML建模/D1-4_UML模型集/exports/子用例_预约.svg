@@ -68,4 +68,11 @@
 <polyline points="1390.0,603.0 1350.0,603.0 1350.0,500.0 1215.0,500.0" fill="none" stroke="#305B49" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
 <polyline points="1350.0,603.0 1350.0,700.0 1215.0,700.0" fill="none" stroke="#305B49" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
 <text x="800.0" y="853.0" text-anchor="middle" font-family="Microsoft YaHei, SimHei, Arial" font-size="16" font-weight="400" fill="#577268">说明：预约主流程按“查询-创建-锁桌-支付-核销”展开；取消、候补与提醒作为异常和支撑用例补充。</text>
+
+<!-- label-overlays-start -->
+<rect x="738.0" y="376.0" width="124.1" height="28.0" rx="5" fill="#FBFDFB" stroke="none"/>
+<text x="800.0" y="398.0" text-anchor="middle" font-family="Microsoft YaHei, SimHei, Arial" font-size="16" font-weight="400" fill="#14733E">&lt;&lt;include&gt;&gt;</text>
+<rect x="1002.6" y="596.0" width="114.8" height="28.0" rx="5" fill="#FBFDFB" stroke="none"/>
+<text x="1060.0" y="618.0" text-anchor="middle" font-family="Microsoft YaHei, SimHei, Arial" font-size="16" font-weight="400" fill="#14733E">&lt;&lt;extend&gt;&gt;</text>
+<!-- label-overlays-end -->
 </svg>

@@ -49,4 +49,27 @@
 <text x="580.0" y="780.0" text-anchor="middle" font-family="Microsoft YaHei, SimHei, Arial" font-size="16" font-weight="400" fill="#102820">返回订单状态</text>
 <polyline points="440.0,845.0 160.0,845.0" fill="none" stroke="#305B49" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="6 7" marker-end="url(#arrow)"/>
 <text x="300.0" y="835.0" text-anchor="middle" font-family="Microsoft YaHei, SimHei, Arial" font-size="16" font-weight="400" fill="#102820">展示取餐/完成提示</text>
+
+<!-- label-overlays-start -->
+<rect x="241.0" y="238.0" width="118.0" height="28.0" rx="5" fill="#FBFDFB" stroke="none"/>
+<text x="300.0" y="260.0" text-anchor="middle" font-family="Microsoft YaHei, SimHei, Arial" font-size="16" font-weight="400" fill="#102820">扫码进入菜单</text>
+<rect x="505.0" y="303.0" width="150.0" height="28.0" rx="5" fill="#FBFDFB" stroke="none"/>
+<text x="580.0" y="325.0" text-anchor="middle" font-family="Microsoft YaHei, SimHei, Arial" font-size="16" font-weight="400" fill="#102820">提交菜品与桌台号</text>
+<rect x="635.7" y="368.0" width="168.6" height="28.0" rx="5" fill="#FBFDFB" stroke="none"/>
+<text x="720.0" y="390.0" text-anchor="middle" font-family="Microsoft YaHei, SimHei, Arial" font-size="16" font-weight="400" fill="#102820">校验库存/价格/优惠</text>
+<rect x="793.0" y="433.0" width="134.0" height="28.0" rx="5" fill="#FBFDFB" stroke="none"/>
+<text x="860.0" y="455.0" text-anchor="middle" font-family="Microsoft YaHei, SimHei, Arial" font-size="16" font-weight="400" fill="#102820">创建待支付订单</text>
+<rect x="817.0" y="498.0" width="86.0" height="28.0" rx="5" fill="#FBFDFB" stroke="none"/>
+<text x="860.0" y="520.0" text-anchor="middle" font-family="Microsoft YaHei, SimHei, Arial" font-size="16" font-weight="400" fill="#102820">支付回调</text>
+<rect x="925.0" y="563.0" width="150.0" height="28.0" rx="5" fill="#FBFDFB" stroke="none"/>
+<text x="1000.0" y="585.0" text-anchor="middle" font-family="Microsoft YaHei, SimHei, Arial" font-size="16" font-weight="400" fill="#102820">发送支付成功通知</text>
+<rect x="1073.0" y="628.0" width="134.0" height="28.0" rx="5" fill="#FBFDFB" stroke="none"/>
+<text x="1140.0" y="650.0" text-anchor="middle" font-family="Microsoft YaHei, SimHei, Arial" font-size="16" font-weight="400" fill="#102820">推送待制作订单</text>
+<rect x="1081.0" y="693.0" width="118.0" height="28.0" rx="5" fill="#FBFDFB" stroke="none"/>
+<text x="1140.0" y="715.0" text-anchor="middle" font-family="Microsoft YaHei, SimHei, Arial" font-size="16" font-weight="400" fill="#102820">更新制作状态</text>
+<rect x="521.0" y="758.0" width="118.0" height="28.0" rx="5" fill="#FBFDFB" stroke="none"/>
+<text x="580.0" y="780.0" text-anchor="middle" font-family="Microsoft YaHei, SimHei, Arial" font-size="16" font-weight="400" fill="#102820">返回订单状态</text>
+<rect x="220.4" y="813.0" width="159.3" height="28.0" rx="5" fill="#FBFDFB" stroke="none"/>
+<text x="300.0" y="835.0" text-anchor="middle" font-family="Microsoft YaHei, SimHei, Arial" font-size="16" font-weight="400" fill="#102820">展示取餐/完成提示</text>
+<!-- label-overlays-end -->
 </svg>

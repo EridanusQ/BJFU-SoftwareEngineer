@@ -175,4 +175,37 @@
 <text x="1140.0" y="1079.5" text-anchor="middle" font-family="Microsoft YaHei, SimHei, Arial" font-size="19" font-weight="700" fill="#0B4E2D">边界说明</text>
 <text x="1140.0" y="1102.5" text-anchor="middle" font-family="Microsoft YaHei, SimHei, Arial" font-size="15" font-weight="400" fill="#577268">Reservation 是预约聚合根；支付、通知、审计作为外部服务边界对象；健康记录仅用于门店照护</text>
 <text x="1140.0" y="1122.5" text-anchor="middle" font-family="Microsoft YaHei, SimHei, Arial" font-size="15" font-weight="400" fill="#577268">，不作医疗诊断。</text>
+
+<!-- label-overlays-start -->
+<rect x="190.0" y="422.0" width="50.0" height="26.0" rx="5" fill="#FBFDFB" stroke="none"/>
+<text x="215.0" y="442.0" text-anchor="middle" font-family="Microsoft YaHei, SimHei, Arial" font-size="14" font-weight="400" fill="#577268">领取</text>
+<rect x="176.0" y="707.0" width="78.0" height="26.0" rx="5" fill="#FBFDFB" stroke="none"/>
+<text x="215.0" y="727.0" text-anchor="middle" font-family="Microsoft YaHei, SimHei, Arial" font-size="14" font-weight="400" fill="#577268">适用活动</text>
+<rect x="526.0" y="422.0" width="78.0" height="26.0" rx="5" fill="#FBFDFB" stroke="none"/>
+<text x="565.0" y="442.0" text-anchor="middle" font-family="Microsoft YaHei, SimHei, Arial" font-size="14" font-weight="400" fill="#577268">维护桌台</text>
+<rect x="686.0" y="852.0" width="78.0" height="26.0" rx="5" fill="#FBFDFB" stroke="none"/>
+<text x="725.0" y="872.0" text-anchor="middle" font-family="Microsoft YaHei, SimHei, Arial" font-size="14" font-weight="400" fill="#577268">健康记录</text>
+<rect x="1449.7" y="572.0" width="90.6" height="26.0" rx="5" fill="#FBFDFB" stroke="none"/>
+<text x="1495.0" y="592.0" text-anchor="middle" font-family="Microsoft YaHei, SimHei, Arial" font-size="14" font-weight="400" fill="#577268">包含 1..*</text>
+<rect x="1611.9" y="707.0" width="86.1" height="26.0" rx="5" fill="#FBFDFB" stroke="none"/>
+<text x="1655.0" y="727.0" text-anchor="middle" font-family="Microsoft YaHei, SimHei, Arial" font-size="14" font-weight="400" fill="#577268">评价/工单</text>
+<rect x="345.0" y="232.0" width="50.0" height="26.0" rx="5" fill="#FBFDFB" stroke="none"/>
+<text x="370.0" y="252.0" text-anchor="middle" font-family="Microsoft YaHei, SimHei, Arial" font-size="14" font-weight="400" fill="#577268">发起</text>
+<rect x="695.0" y="232.0" width="50.0" height="26.0" rx="5" fill="#FBFDFB" stroke="none"/>
+<text x="720.0" y="252.0" text-anchor="middle" font-family="Microsoft YaHei, SimHei, Arial" font-size="14" font-weight="400" fill="#577268">归属</text>
+<rect x="515.0" y="705.0" width="50.0" height="26.0" rx="5" fill="#FBFDFB" stroke="none"/>
+<text x="540.0" y="725.0" text-anchor="middle" font-family="Microsoft YaHei, SimHei, Arial" font-size="14" font-weight="400" fill="#577268">抵扣</text>
+<rect x="700.0" y="572.0" width="50.0" height="26.0" rx="5" fill="#FBFDFB" stroke="none"/>
+<text x="725.0" y="592.0" text-anchor="middle" font-family="Microsoft YaHei, SimHei, Arial" font-size="14" font-weight="400" fill="#577268">锁台</text>
+<rect x="1136.9" y="272.0" width="86.1" height="26.0" rx="5" fill="#FBFDFB" stroke="none"/>
+<text x="1180.0" y="292.0" text-anchor="middle" font-family="Microsoft YaHei, SimHei, Arial" font-size="14" font-weight="400" fill="#577268">订金/退款</text>
+<rect x="1131.0" y="572.0" width="78.0" height="26.0" rx="5" fill="#FBFDFB" stroke="none"/>
+<text x="1170.0" y="592.0" text-anchor="middle" font-family="Microsoft YaHei, SimHei, Arial" font-size="14" font-weight="400" fill="#577268">到店生成</text>
+<rect x="1150.0" y="852.0" width="50.0" height="26.0" rx="5" fill="#FBFDFB" stroke="none"/>
+<text x="1175.0" y="872.0" text-anchor="middle" font-family="Microsoft YaHei, SimHei, Arial" font-size="14" font-weight="400" fill="#577268">提醒</text>
+<rect x="1470.0" y="272.0" width="50.0" height="26.0" rx="5" fill="#FBFDFB" stroke="none"/>
+<text x="1495.0" y="292.0" text-anchor="middle" font-family="Microsoft YaHei, SimHei, Arial" font-size="14" font-weight="400" fill="#577268">审计</text>
+<rect x="1296.0" y="707.0" width="78.0" height="26.0" rx="5" fill="#FBFDFB" stroke="none"/>
+<text x="1335.0" y="727.0" text-anchor="middle" font-family="Microsoft YaHei, SimHei, Arial" font-size="14" font-weight="400" fill="#577268">状态通知</text>
+<!-- label-overlays-end -->
 </svg>

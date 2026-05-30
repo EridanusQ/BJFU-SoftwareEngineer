@@ -63,4 +63,11 @@
 <polyline points="1385.0,553.0 1340.0,553.0 1340.0,375.0 1215.0,375.0" fill="none" stroke="#305B49" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
 <polyline points="1340.0,553.0 1340.0,575.0 1215.0,575.0" fill="none" stroke="#305B49" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
 <text x="800.0" y="853.0" text-anchor="middle" font-family="Microsoft YaHei, SimHei, Arial" font-size="16" font-weight="400" fill="#577268">说明：会员资料与隐私授权支撑权益、积分和推荐；差评工单作为运营侧扩展流程处理。</text>
+
+<!-- label-overlays-start -->
+<rect x="922.6" y="491.0" width="114.8" height="28.0" rx="5" fill="#FBFDFB" stroke="none"/>
+<text x="980.0" y="513.0" text-anchor="middle" font-family="Microsoft YaHei, SimHei, Arial" font-size="16" font-weight="400" fill="#14733E">&lt;&lt;extend&gt;&gt;</text>
+<rect x="483.0" y="511.0" width="124.1" height="28.0" rx="5" fill="#FBFDFB" stroke="none"/>
+<text x="545.0" y="533.0" text-anchor="middle" font-family="Microsoft YaHei, SimHei, Arial" font-size="16" font-weight="400" fill="#14733E">&lt;&lt;include&gt;&gt;</text>
+<!-- label-overlays-end -->
 </svg>

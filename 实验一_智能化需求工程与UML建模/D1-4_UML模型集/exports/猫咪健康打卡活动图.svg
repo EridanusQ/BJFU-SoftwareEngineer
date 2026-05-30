@@ -57,4 +57,11 @@
 <polyline points="1416.0,750.0 1416.0,587.0" fill="none" stroke="#305B49" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
 <polyline points="1270.0,556.0 1170.0,556.0 1170.0,641.0 812.0,641.0" fill="none" stroke="#305B49" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#arrow)"/>
 <text x="1045.0" y="633.5" text-anchor="middle" font-family="Microsoft YaHei, SimHei, Arial" font-size="17" font-weight="400" fill="#577268">复核通过</text>
+
+<!-- activity-label-overlays-start -->
+<rect x="402.1" y="485.5" width="99.9" height="29.0" rx="5" fill="#FBFDFB" stroke="none"/>
+<text x="452.0" y="508.5" text-anchor="middle" font-family="Microsoft YaHei, SimHei, Arial" font-size="17" font-weight="400" fill="#577268">是/需休息</text>
+<rect x="1000.0" y="610.5" width="90.0" height="29.0" rx="5" fill="#FBFDFB" stroke="none"/>
+<text x="1045.0" y="633.5" text-anchor="middle" font-family="Microsoft YaHei, SimHei, Arial" font-size="17" font-weight="400" fill="#577268">复核通过</text>
+<!-- activity-label-overlays-end -->
 </svg>
