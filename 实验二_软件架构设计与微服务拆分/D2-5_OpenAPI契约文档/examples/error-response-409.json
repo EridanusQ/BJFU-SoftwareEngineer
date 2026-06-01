@@ -1,0 +1,11 @@
+{
+  "code": "RESERVATION_SLOT_CONFLICT",
+  "message": "当前时段桌位已被占用，请重新选择时间",
+  "traceId": "trc_20260601_8f3a91",
+  "details": [
+    {
+      "field": "tableId",
+      "issue": "capacity locked by another reservation"
+    }
+  ]
+}

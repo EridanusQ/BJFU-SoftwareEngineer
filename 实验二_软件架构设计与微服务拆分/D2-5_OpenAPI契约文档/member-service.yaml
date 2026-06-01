@@ -2,23 +2,42 @@ openapi: 3.0.3
 info:
   title: NekoCafé Member Service API
   version: 1.0.0
-  description: 会员服务，负责登录资料、偏好、隐私授权、积分和优惠券钱包。
+  description: |
+    会员服务契约，覆盖当前会员资料、偏好、隐私授权、积分、优惠券和个人信息删除/导出请求。
+    本服务属于会员上下文核心域，所有返回体默认使用脱敏字段，不直接暴露手机号明文。
 servers:
-  - url: https://api.nekocafe.example/v1
+  - url: https://api.nekocafe.example.com/member/v1
+    description: 生产网关
+  - url: http://localhost:8082/member/v1
+    description: 本地联调
+tags:
+  - { name: Profile, description: 会员资料 }
+  - { name: Privacy, description: 授权、导出与删除 }
+  - { name: Wallet, description: 积分与优惠券 }
+x-ratelimit-default: 600 requests/minute/member
 security:
   - bearerAuth: []
 paths:
   /members/me:
     get:
+      tags: [Profile]
+      operationId: getCurrentMember
       summary: 查询当前会员资料
+      parameters:
+        - { name: X-Trace-Id, in: header, required: true, schema: { type: string } }
       responses:
         "200":
-          description: 当前会员
+          description: 当前会员资料
           content:
             application/json:
               schema: { $ref: "#/components/schemas/MemberProfile" }
+        "401": { $ref: "./common/error-response.yaml#/components/responses/Unauthorized" }
     patch:
+      tags: [Profile]
+      operationId: updateCurrentMember
       summary: 更新当前会员资料
+      parameters:
+        - { name: Idempotency-Key, in: header, required: true, schema: { type: string } }
       requestBody:
         required: true
         content:
@@ -26,23 +45,39 @@ paths:
             schema: { $ref: "#/components/schemas/UpdateMemberRequest" }
       responses:
         "200":
-          description: 更新后的会员
+          description: 更新后的会员资料
           content:
             application/json:
               schema: { $ref: "#/components/schemas/MemberProfile" }
+        "400": { $ref: "./common/error-response.yaml#/components/responses/BadRequest" }
   /members/{memberId}:
     get:
+      tags: [Profile]
+      operationId: getMemberSummary
       summary: 按 ID 查询会员摘要
       parameters:
-        - in: path
-          name: memberId
-          required: true
-          schema: { type: string }
+        - { name: memberId, in: path, required: true, schema: { type: string } }
       responses:
         "200":
           description: 会员摘要
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/MemberSummary" }
+        "403": { $ref: "./common/error-response.yaml#/components/responses/Forbidden" }
   /members/me/preferences:
+    get:
+      tags: [Profile]
+      operationId: getPreferences
+      summary: 查询猫咪与菜品偏好
+      responses:
+        "200":
+          description: 偏好标签
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/PreferenceProfile" }
     put:
+      tags: [Profile]
+      operationId: updatePreferences
       summary: 更新猫咪和菜品偏好
       requestBody:
         required: true
@@ -52,8 +87,13 @@ paths:
       responses:
         "200":
           description: 已更新
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/PreferenceProfile" }
   /members/me/consents:
     get:
+      tags: [Privacy]
+      operationId: listConsents
       summary: 查询隐私授权
       responses:
         "200":
@@ -64,33 +104,82 @@ paths:
                 type: array
                 items: { $ref: "#/components/schemas/Consent" }
     put:
+      tags: [Privacy]
+      operationId: updateConsent
       summary: 更新隐私授权
+      parameters:
+        - { name: Idempotency-Key, in: header, required: true, schema: { type: string } }
       requestBody:
         required: true
         content:
           application/json:
             schema: { $ref: "#/components/schemas/ConsentRequest" }
+            examples:
+              marketingOff:
+                externalValue: ./examples/member-consent-request.json
       responses:
         "200":
           description: 授权已更新
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Consent" }
   /members/me/coupons:
     get:
+      tags: [Wallet]
+      operationId: listCoupons
       summary: 查询优惠券钱包
+      parameters:
+        - { $ref: "./common/pagination.yaml#/components/parameters/page" }
+        - { $ref: "./common/pagination.yaml#/components/parameters/size" }
       responses:
         "200":
-          description: 优惠券列表
+          description: 优惠券分页列表
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items: { $ref: "#/components/schemas/Coupon" }
+                  meta: { $ref: "./common/pagination.yaml#/components/schemas/PageMeta" }
   /members/me/points:
     get:
-      summary: 查询积分账户
+      tags: [Wallet]
+      operationId: getPointAccount
+      summary: 查询积分账户与最近变动
       responses:
         "200":
-          description: 积分余额
+          description: 积分账户
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/PointAccount" }
   /members/me/delete-request:
     post:
+      tags: [Privacy]
+      operationId: requestPersonalDataDeletion
       summary: 提交个人信息删除请求
+      parameters:
+        - { name: Idempotency-Key, in: header, required: true, schema: { type: string } }
       responses:
         "202":
-          description: 请求已受理
+          description: 删除请求已受理
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/PrivacyRequest" }
+  /members/me/export-request:
+    post:
+      tags: [Privacy]
+      operationId: requestPersonalDataExport
+      summary: 提交个人信息导出请求
+      parameters:
+        - { name: Idempotency-Key, in: header, required: true, schema: { type: string } }
+      responses:
+        "202":
+          description: 导出请求已受理
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/PrivacyRequest" }
 components:
   securitySchemes:
     bearerAuth:
@@ -100,20 +189,40 @@ components:
   schemas:
     MemberProfile:
       type: object
+      required: [id, phoneMasked, level, points]
       properties:
-        id: { type: string }
-        nickname: { type: string }
-        phoneMasked: { type: string }
-        level: { type: string }
-        points: { type: integer }
+        id: { type: string, example: m_1001 }
+        nickname: { type: string, example: 小林 }
+        phoneMasked: { type: string, example: "138****5678" }
+        level: { type: string, enum: [BASIC, SILVER, GOLD, PLATINUM] }
+        points: { type: integer, example: 1280 }
         preferenceTags:
           type: array
           items: { type: string }
+        privacyVersion: { type: string, example: "2026-05" }
+    MemberSummary:
+      type: object
+      properties:
+        id: { type: string }
+        nickname: { type: string }
+        level: { type: string }
+        noShowCount: { type: integer }
     UpdateMemberRequest:
       type: object
       properties:
-        nickname: { type: string }
+        nickname: { type: string, maxLength: 40 }
         birthday: { type: string, format: date }
+        contactPreference: { type: string, enum: [SMS, IN_APP, EMAIL] }
+    PreferenceProfile:
+      type: object
+      properties:
+        catTemperaments:
+          type: array
+          items: { type: string }
+        foodTags:
+          type: array
+          items: { type: string }
+        updatedAt: { type: string, format: date-time }
     PreferenceRequest:
       type: object
       properties:
@@ -123,15 +232,45 @@ components:
         foodTags:
           type: array
           items: { type: string }
+        allergyNotes: { type: string, maxLength: 200, description: 敏感个人信息，仅限履约使用 }
     Consent:
       type: object
+      required: [type, granted, updatedAt]
       properties:
-        type: { type: string, enum: [RECOMMENDATION, MARKETING, ANALYTICS] }
+        type: { type: string, enum: [RECOMMENDATION, MARKETING, ANALYTICS, CROSS_BORDER] }
         granted: { type: boolean }
         updatedAt: { type: string, format: date-time }
+        policyVersion: { type: string }
     ConsentRequest:
       type: object
-      required: [type, granted]
+      required: [type, granted, policyVersion]
       properties:
-        type: { type: string }
+        type: { type: string, enum: [RECOMMENDATION, MARKETING, ANALYTICS, CROSS_BORDER] }
         granted: { type: boolean }
+        policyVersion: { type: string }
+    Coupon:
+      type: object
+      properties:
+        id: { type: string }
+        name: { type: string }
+        discountAmount: { type: number, format: double }
+        validUntil: { type: string, format: date-time }
+        status: { type: string, enum: [AVAILABLE, USED, EXPIRED] }
+    PointAccount:
+      type: object
+      properties:
+        balance: { type: integer }
+        recentRecords:
+          type: array
+          items:
+            type: object
+            properties:
+              change: { type: integer }
+              reason: { type: string }
+              createdAt: { type: string, format: date-time }
+    PrivacyRequest:
+      type: object
+      properties:
+        requestId: { type: string }
+        status: { type: string, enum: [ACCEPTED, PROCESSING, DONE, REJECTED] }
+        expectedCompletedAt: { type: string, format: date-time }

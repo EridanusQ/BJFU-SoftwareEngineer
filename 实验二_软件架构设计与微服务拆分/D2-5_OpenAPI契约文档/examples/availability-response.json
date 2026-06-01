@@ -1,0 +1,16 @@
+{
+  "items": [
+    {
+      "storeId": "s_bj_001",
+      "tableId": "tbl_020",
+      "tableNo": "A12",
+      "timeSlot": {
+        "startAt": "2026-06-20T18:30:00+08:00",
+        "endAt": "2026-06-20T20:00:00+08:00"
+      },
+      "capacity": 4,
+      "remaining": 1,
+      "catAvailable": true
+    }
+  ]
+}

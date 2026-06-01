@@ -1,4 +1,5 @@
 {
+  "id": "rsv_20260601_0001",
   "memberId": "m_1001",
   "storeId": "s_bj_001",
   "tableId": "tbl_020",
@@ -7,9 +8,7 @@
     "endAt": "2026-06-20T20:00:00+08:00"
   },
   "partySize": 3,
-  "preferredCatIds": [
-    "cat_mochi",
-    "cat_luna"
-  ],
-  "specialRequest": "儿童同行，靠窗，避免猫毛过敏区"
+  "depositStatus": "WAITING",
+  "status": "PENDING_PAYMENT",
+  "traceId": "trc_20260601_8f3a91"
 }

@@ -1,4 +1,5 @@
 {
   "type": "MARKETING",
-  "granted": false
+  "granted": false,
+  "policyVersion": "2026-05"
 }
