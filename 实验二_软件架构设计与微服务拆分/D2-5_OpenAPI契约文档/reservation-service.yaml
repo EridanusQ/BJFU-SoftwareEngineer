@@ -15,6 +15,16 @@ tags:
   - { name: Reservation, description: 预约生命周期管理 }
   - { name: Waitlist, description: 候补队列 }
 x-ratelimit-default: 1000 requests/minute/store
+x-architecture-notes:
+  boundedContext: 预约上下文（核心域）
+  designRationale: >
+    预约服务承载顾客从查询可用桌位到创建预约、改期、取消、到店核销和候补队列的核心交易链路。
+    契约将容量查询、预约状态变更和候补处理放在同一服务边界内，是为了让容量锁、幂等提交、押金状态和预约状态机保持一致。
+  qualityAttributes:
+    - 性能：创建预约接口需要支撑高峰时段并发提交，P95 延迟目标来自 D2-1。
+    - 可用性：支付、通知等外部失败不应阻塞预约主状态，失败通过事件和补偿流程处理。
+    - 可观测性：所有关键写接口要求 X-Trace-Id，便于串联预约、支付、通知和审计日志。
+    - 可维护性：路径和 Schema 与 D2-4 C4 图、D2-6 数据字典保持同名，减少后续实现歧义。
 security:
   - bearerAuth: []
 paths:

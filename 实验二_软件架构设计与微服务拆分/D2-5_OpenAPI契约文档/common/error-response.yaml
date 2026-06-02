@@ -1,4 +1,10 @@
 components:
+  x-error-model-notes:
+    purpose: >
+      统一错误模型用于把接口异常、业务冲突、鉴权失败和限流结果表达为同一种结构，便于前端展示、日志检索和自动化测试。
+    traceability: >
+      ErrorResponse 中的 traceId 必须与请求头 X-Trace-Id、审计日志和告警记录保持一致。对于预约容量冲突、支付回调异常和隐私权限不足等场景，
+      code 字段应稳定可枚举，message 面向调用方解释问题，details 用于补充字段级原因。
   schemas:
     ErrorResponse:
       type: object

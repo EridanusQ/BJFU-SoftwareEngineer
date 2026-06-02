@@ -15,6 +15,16 @@ tags:
   - { name: Privacy, description: 授权、导出与删除 }
   - { name: Wallet, description: 积分与优惠券 }
 x-ratelimit-default: 600 requests/minute/member
+x-architecture-notes:
+  boundedContext: 会员上下文（核心域）
+  designRationale: >
+    会员服务集中管理会员资料、偏好、积分、优惠券和隐私授权，避免预约、运营、通知等服务直接修改会员内部状态。
+    该边界可以保护敏感字段，并通过 Published Language 向其他上下文发布会员身份、积分变更和授权状态变化。
+  qualityAttributes:
+    - 安全性：手机号、授权状态和隐私相关字段默认脱敏，不在普通响应中暴露明文。
+    - 合规性：删除、导出和授权撤回请求必须可追踪，并与 D2-6 的 [PII]/[GDPR] 标注一致。
+    - 可维护性：会员等级、积分和优惠券规则集中在会员上下文，避免散落在预约或运营服务中。
+    - 可观测性：隐私授权变更和积分变更应产生可追踪事件，支持后续审计和运营分析。
 security:
   - bearerAuth: []
 paths:
