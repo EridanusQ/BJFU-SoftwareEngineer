@@ -5,7 +5,7 @@
 1. 确认 Docker Desktop 已启动。
 2. 执行 `make up`。
 3. 访问 `http://localhost:8081/healthz` 和 `http://localhost:8082/healthz`。
-4. 访问 Prometheus `http://localhost:9090`，Grafana `http://localhost:3000`。
+4. 访问 Prometheus `http://localhost:9090`，Grafana `http://localhost:3001`。
 
 ## 常见排障
 

@@ -26,7 +26,7 @@ curl http://localhost:8081/metrics
 | reservation | 8081 | 预约服务 |
 | member | 8082 | 会员服务 |
 | Prometheus | 9090 | 指标采集 |
-| Grafana | 3000 | Dashboard，默认 admin/admin |
+| Grafana | 3001 | Dashboard，默认 admin/admin |
 
 ## 常用命令
 

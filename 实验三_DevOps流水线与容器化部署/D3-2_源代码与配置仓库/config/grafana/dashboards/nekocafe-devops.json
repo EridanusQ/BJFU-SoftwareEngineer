@@ -1,11 +1,70 @@
 {
-  "title": "NekoCafé DevOps Overview",
+  "uid": "nekocafe-devops",
+  "title": "NekoCafe DevOps Overview",
   "schemaVersion": 39,
-  "version": 1,
+  "version": 2,
+  "refresh": "10s",
+  "time": {
+    "from": "now-30m",
+    "to": "now"
+  },
   "panels": [
-    {"type": "timeseries", "title": "QPS", "gridPos": {"x": 0, "y": 0, "w": 12, "h": 8}},
-    {"type": "timeseries", "title": "P99 Latency", "gridPos": {"x": 12, "y": 0, "w": 12, "h": 8}},
-    {"type": "timeseries", "title": "Error Rate", "gridPos": {"x": 0, "y": 8, "w": 12, "h": 8}},
-    {"type": "timeseries", "title": "CPU / Memory", "gridPos": {"x": 12, "y": 8, "w": 12, "h": 8}}
+    {
+      "type": "timeseries",
+      "title": "QPS by service",
+      "datasource": { "type": "prometheus", "uid": "Prometheus" },
+      "targets": [
+        {
+          "expr": "sum by (service) (rate(nekocafe_http_requests_total[5m]))",
+          "legendFormat": "{{service}}"
+        }
+      ],
+      "gridPos": { "x": 0, "y": 0, "w": 12, "h": 8 }
+    },
+    {
+      "type": "timeseries",
+      "title": "Request latency average",
+      "datasource": { "type": "prometheus", "uid": "Prometheus" },
+      "targets": [
+        {
+          "expr": "sum by (service) (rate(nekocafe_http_request_duration_seconds_sum[5m])) / sum by (service) (rate(nekocafe_http_requests_total[5m]))",
+          "legendFormat": "{{service}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s"
+        }
+      },
+      "gridPos": { "x": 12, "y": 0, "w": 12, "h": 8 }
+    },
+    {
+      "type": "timeseries",
+      "title": "Error rate",
+      "datasource": { "type": "prometheus", "uid": "Prometheus" },
+      "targets": [
+        {
+          "expr": "sum by (service) (rate(nekocafe_http_request_errors_total[5m]))",
+          "legendFormat": "{{service}}"
+        }
+      ],
+      "gridPos": { "x": 0, "y": 8, "w": 12, "h": 8 }
+    },
+    {
+      "type": "timeseries",
+      "title": "Target health and scrape duration",
+      "datasource": { "type": "prometheus", "uid": "Prometheus" },
+      "targets": [
+        {
+          "expr": "up{job=~\"reservation|member\"}",
+          "legendFormat": "{{job}} up"
+        },
+        {
+          "expr": "scrape_duration_seconds{job=~\"reservation|member\"}",
+          "legendFormat": "{{job}} scrape"
+        }
+      ],
+      "gridPos": { "x": 12, "y": 8, "w": 12, "h": 8 }
+    }
   ]
 }
